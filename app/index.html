@@ -185,7 +185,7 @@
             <div class="field"><label for="tmSym" data-t="sim.tmWhat"></label><select id="tmSym"></select></div>
             <div class="field"><label for="tmMode" data-t="sim.tmHow"></label><select id="tmMode"><option value="once" data-t="sim.once"></option><option value="dca" data-t="sim.monthly"></option></select></div>
             <div class="field"><label for="tmAmt"><span data-t="sim.amt"></span> (<span class="cur"></span>)</label><input type="number" id="tmAmt" min="0" step="100"></div>
-            <div class="field"><label for="tmYrs" id="tmYrsL"></label><input type="range" id="tmYrs" min="3" max="60" step="1"></div>
+            <div class="field"><label for="tmYrs" id="tmYrsL"></label><input type="range" id="tmYrs" min="12" max="720" step="12"></div>
           </div>
           <div class="pl" id="tmOut"></div>
           <div class="chartbox" id="tmBox"><svg class="big" id="tmChart" role="img"></svg><div class="tip" id="tmTip" hidden></div></div>
@@ -345,5 +345,7 @@
 <script src="bienvenida.js"></script>
 <script src="cuenta.js"></script>
 <script src="vivo.js"></script>
+<script src="glosario.js"></script>
+<script src="video.js"></script>
 </body>
 </html>

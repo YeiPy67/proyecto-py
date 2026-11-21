@@ -153,7 +153,7 @@ window.TXT = {
 "sim.now":["hoy","now","hoje","auj.","heute"],
 "sim.year":["Año {n}","Year {n}","Ano {n}","Année {n}","Jahr {n}"],
 "sim.tm":["Máquina del tiempo","Time machine","Máquina do tempo","Machine à remonter le temps","Zeitmaschine"],
-"sim.tmSub":["¿Y si hubieras invertido antes? Con precios reales y el tipo de cambio de cada fecha.","What if you had invested earlier? Real prices and each date’s exchange rate.","E se você tivesse investido antes? Preços reais e o câmbio de cada data.","Et si vous aviez investi plus tôt ? Prix réels et taux de change de chaque date.","Was, wenn Sie früher investiert hätten? Echte Kurse und der Wechselkurs jedes Datums."],
+"sim.tmSub":["¿Y si hubieras empezado hace 10, 30 o 50 años? Con precios reales y dividendos.","What if you had started 10, 30 or 50 years ago? Real prices, dividends included.","E se você tivesse começado há 10, 30 ou 50 anos? Preços reais, com dividendos.","Et si vous aviez commencé il y a 10, 30 ou 50 ans ? Prix réels, dividendes compris.","Was, wenn Sie vor 10, 30 oder 50 Jahren angefangen hätten? Echte Kurse, mit Dividenden."],
 "sim.tmWhat":["En qué","In what","Em quê","Dans quoi","Worin"],
 "sim.tmHow":["Cómo","How","Como","Comment","Wie"],
 "sim.once":["Todo de una vez","All at once","Tudo de uma vez","En une fois","Auf einmal"],

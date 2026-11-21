@@ -1105,3 +1105,67 @@ details[open]>summary::after{transform:rotate(45deg)}
   .port-top{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)!important}
 }
 @media (min-width:1100px){#v-portfolio .donutcard .lbl{text-align:left!important;justify-self:start}}
+/* ======================= v8: el verde vuelve, pero solo para los datos ======================= */
+/* La interfaz sigue en negro, blanco y rojo. Verde = el precio subió; rojo = bajó. */
+:root{--up:#12a150;--up-soft:#e5f6ec}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--up:#30d158;--up-soft:#0c2a17}}
+:root[data-theme="dark"]{--up:#30d158;--up-soft:#0c2a17}
+.mark.up{color:var(--up)}
+.lesson.done .sym-tile{background:var(--fg);color:var(--bg)}
+/* v8: Explorar en celular no debe quedar más ancho que la pantalla */
+.view,main,.profiles,.profiles>*{min-width:0}
+#profChips{max-width:100%}
+@media (max-width:900px){#profChips{max-width:calc(100% + 32px)}}
+html,body{overflow-x:clip}
+/* v8: cifras que nacen de símbolos */
+.scr .sx{font-family:var(--math);font-style:italic;font-weight:500;color:var(--faint);display:inline-block;min-width:.55em;text-align:center}
+.tm-x{margin:0;font:700 1.05rem var(--display)}
+/* v8: diccionario de la esquina */
+.glos-btn{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:110;display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px 0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:600 .82rem var(--body);cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.10)}
+.glos-btn[hidden]{display:none}
+.glos-btn .ico{width:17px;height:17px}
+.glos-btn b{font:600 .72rem var(--mono);color:var(--muted);border-left:1px solid var(--line);padding-left:8px}
+.glos-btn.has-new::after{content:"";position:absolute;top:6px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.glos-btn.on-dark{background:#111;color:#fff;border-color:#2a2a2a}.glos-btn.on-dark b{color:#9a9a9a;border-color:#2a2a2a}
+.glos-btn.pop{animation:gpop .5s var(--spring,ease)}
+@keyframes gpop{40%{transform:scale(1.12)}}
+@media (min-width:901px){.glos-btn{bottom:22px;right:22px}}
+.sheet-wrap.over-wel{z-index:120}
+.glos-sheet h2{margin:4px 0 6px}
+.glos-list{display:grid;border-top:1px solid var(--line)}
+.glos-i{border-bottom:1px solid var(--line)}
+.glos-i summary{display:flex;align-items:center;gap:10px;padding:14px 2px;cursor:pointer;list-style:none}
+.glos-i summary b{font:600 1rem var(--display)}
+.glos-i p{margin:0 2px 14px;color:var(--muted);line-height:1.55}
+.glos-new{font:700 .62rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+@media (prefers-reduced-motion:reduce){.glos-btn.pop{animation:none}}
+@media (max-width:900px){.glos-btn{height:42px;padding:0 12px}.glos-btn .glos-l{display:none}.glos-btn b{border:0;padding-left:0;color:var(--fg)}}
+.glos-i summary{justify-content:flex-start!important}.glos-i summary::after{margin-left:auto!important}
+.gw{all:unset;cursor:pointer;text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,currentColor 55%,transparent)}
+.gw:hover,.gw:focus-visible{text-decoration-color:var(--red);text-decoration-style:solid}
+/* v8: video de las cinco personas */
+.vid{position:relative;width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;background:#000;color:#fff}
+.vid canvas{width:100%;height:100%;display:block;cursor:pointer}
+.vid-bar{display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.vid-pp{all:unset;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#000;flex:none}
+.vid-pp svg{width:18px;height:18px}
+.vid-prog{flex:1;height:4px;border-radius:4px;background:#2a2a2a;cursor:pointer;position:relative}
+.vid-prog i{position:absolute;left:0;top:0;bottom:0;background:#ff3b30;border-radius:4px}
+.vid-full{position:fixed;inset:0;z-index:130;background:#000;display:grid}
+.vid-x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:14px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:1rem;cursor:pointer}
+.wel-video{gap:10px!important}
+.wel-vbox{width:min(100%,560px);height:min(56vh,520px);border-radius:18px;overflow:hidden;border:1px solid #222;margin:6px auto 8px}
+@media (min-width:901px){.wel-vbox{width:min(92vw,760px);height:min(52vh,430px)}}
+.wel-btn.pulse{animation:gpop 1.2s ease 2}
+@media (max-width:900px){.wel-video{padding-top:44px}}
+.vid-card{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:170px auto;background:#000;color:#fff;border-radius:var(--r);overflow:hidden;border:1px solid #1f1f1f}
+.vid-card canvas{grid-column:1/-1;width:100%;height:170px;display:block}
+.vid-card .vc-t{display:grid;gap:3px;padding:14px 16px 16px}
+.vid-card .vc-t b{font:700 1.05rem var(--display)}
+.vid-card .vc-t span{color:#9a9a9a;font-size:.88rem;line-height:1.45}
+.vid-card .vc-play{align-self:center;margin-right:16px;width:44px;height:44px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center;transition:transform .2s}
+.vid-card .vc-play svg{width:20px;height:20px}
+.vid-card:hover .vc-play{transform:scale(1.08)}
+.vid-card:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+#learnList>.vid-card{margin-bottom:22px}
+.scr .sx{font-size:.88em}

@@ -37,8 +37,10 @@ function welcome(done,startAt=0){
     if(k==="cur"){const sel=el("select",{class:"wel-select","aria-label":t("wel.cur")});CURS.forEach(([c,sy])=>sel.append(el("option",{value:c},`${c} · ${sy}`)));sel.value=CUR;
       const prev=el("div",{class:"wel-preview"}),upd=()=>{CUR=sel.value;prev.textContent=money(1000*fxNow())};sel.onchange=upd;upd();
       const ok=btn(t("onb.next"));ok.onclick=()=>{store.set("cur",CUR);next()};s.append(el("h2",{},t("wel.cur")),el("p",{class:"wel-sub"},t("wel.curSub")),sel,prev,ok)}
-    if(k==="next"){if((lv||"mid")==="new"){s.append(el("span",{class:"logo xl sym"},"∞"),el("h2",{},t("wel.learn")),el("p",{class:"wel-sub"},t("wel.learnSub")));
-        const a=btn(t("wel.startLearn")),b=btn(t("wel.later"),"wel-link");a.onclick=()=>{finish("learn")};b.onclick=next;s.append(a,b)}
+    if(k==="next"){if((lv||"mid")==="new"){s.classList.add("wel-video");s.append(el("h2",{},t("wel.vid")),el("p",{class:"wel-sub"},t("wel.vidSub")));
+        const vb=el("div",{class:"wel-vbox"});s.append(vb);const a=btn(t("wel.startLearn")),b=btn(t("wel.later"),"wel-link");
+        {const q=new URLSearchParams(location.search),vt=q.has("shot")&&q.get("wvt");setTimeout(()=>{if(s.isConnected)PyVideo.mount(vb,vt?{autoplay:false,at:+vt}:{onEnd:()=>a.classList.add("pulse")})},vt?0:450)}
+        a.onclick=()=>{finish("learn")};b.onclick=next;s.append(a,b)}
       else{s.append(el("h2",{},t("onb.how")));const box=el("div",{class:"wel-grid"});
         [["photo","camera","imp.photo"],["voice","mic","imp.voice"],["text","keys","imp.text"]].forEach(([m,ic,l])=>{const c=el("button",{class:"wel-card sm",type:"button"});const ie=el("span",{class:"ic"});ie.innerHTML=ICON[ic];c.append(ie,el("b",{},t(l)));c.onclick=()=>finish("imp:"+m);box.append(c)});
         const sk=btn(t("imp.skip"),"wel-link");sk.onclick=next;s.append(box,sk)}}
@@ -86,7 +88,10 @@ function openLesson(id,k0=0){const les=LECCIONES.find(x=>x.id===id);if(!les)retu
   o.style.setProperty("--hue",(LECCIONES.indexOf(les)*47+250)%360);draw()}
 
 /* ---------- Vista Aprende ---------- */
-function rLearn(){const box=$("learnList");box.innerHTML="";const d=lessonsDone();
+function vidCard(){const c=el("button",{class:"vid-card",type:"button"}),cv=el("canvas",{"aria-hidden":"true"}),tx=el("span",{class:"vc-t"});
+  tx.append(el("b",{},t("vid.card")),el("span",{},t("vid.cardSub")));const pl=el("span",{class:"vc-play"});pl.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>';
+  c.append(cv,tx,pl);c.onclick=()=>PyVideo.open();requestAnimationFrame(()=>PyVideo.thumb(cv));return c}
+function rLearn(){const box=$("learnList");box.innerHTML="";const d=lessonsDone();box.append(vidCard());
   const path=el("div",{class:"path"});path.append(el("h2",{},t("les.path")));const n=LECCIONES.filter(x=>d[x.id]).length;
   const pg=el("div",{class:"prog"}),bar=el("div",{class:"bar"}),fill=el("i");fill.style.width=(n/LECCIONES.length*100)+"%";bar.append(fill);pg.append(bar,el("span",{class:"num small muted"},t("home.pathDone",{a:n,b:LECCIONES.length})));path.append(pg);
   const grid=el("div",{class:"lessons"});LECCIONES.forEach((x,i)=>{const c=el("button",{class:"lesson card"+(d[x.id]?" done":""),type:"button"});c.style.setProperty("--hue",(i*47+250)%360);
