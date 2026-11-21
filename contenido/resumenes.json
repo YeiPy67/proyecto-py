@@ -1,0 +1,54 @@
+{
+  "fecha_iso": "2026-11-20",
+  "activos": {
+    "ANT": {
+      "es": "Segundo día en bolsa: cayó 8,5 % a 88,91 USD, todavía por encima de su precio de salida (83). Se movió con el miedo general a la IA. Fecha clave: el 15 de diciembre se libera la venta de unas 303 millones de acciones de empleados.",
+      "en": "Second trading day: down 8.5% to $88.91, still above its $83 IPO price. It moved with the broad fear around AI. Key date: on December 15 about 303 million employee shares can be sold.",
+      "pt": "Segundo dia na bolsa: caiu 8,5%, para US$ 88,91, ainda acima do preço do IPO (US$ 83). Acompanhou o medo geral com a IA. Data-chave: em 15 de dezembro cerca de 303 milhões de ações de funcionários poderão ser vendidas.",
+      "fr": "Deuxième séance : −8,5 % à 88,91 $, toujours au-dessus du prix d’introduction (83 $). Elle a suivi la peur générale autour de l’IA. Date clé : le 15 décembre, environ 303 millions d’actions de salariés pourront être vendues.",
+      "de": "Zweiter Handelstag: −8,5 % auf 88,91 $, noch über dem Ausgabepreis von 83 $. Bewegt von der allgemeinen KI-Angst. Schlüsseltermin: Am 15. Dezember dürfen rund 303 Mio. Mitarbeiteraktien verkauft werden."
+    },
+    "NVDA": {
+      "es": "Cayó 14 %, su peor semana desde 2008. Pesan dos cosas: la salida de Jensen Huang (Colette Kress es CEO interina) y reportes de que la SEC revisa su contabilidad. No hay señales de que venda menos chips.",
+      "en": "Down 14%, its worst week since 2008. Two things weigh on it: Jensen Huang’s exit (Colette Kress is interim CEO) and reports that the SEC is reviewing its accounting. No sign it is selling fewer chips.",
+      "pt": "Caiu 14%, sua pior semana desde 2008. Pesam duas coisas: a saída de Jensen Huang (Colette Kress é CEO interina) e relatos de que a SEC revisa sua contabilidade. Não há sinais de que venda menos chips.",
+      "fr": "−14 %, sa pire semaine depuis 2008. Deux facteurs : le départ de Jensen Huang (Colette Kress est PDG par intérim) et des informations selon lesquelles la SEC examine sa comptabilité. Rien n’indique une baisse des ventes de puces.",
+      "de": "−14 %, schlechteste Woche seit 2008. Zwei Belastungen: der Abgang von Jensen Huang (Colette Kress ist Interims-CEO) und Berichte, dass die SEC die Bilanzierung prüft. Kein Hinweis auf weniger Chipverkäufe."
+    },
+    "GOOGL": {
+      "es": "Cayó solo 2,7 %, mucho menos que el resto de la tecnología, y pasó a Nvidia como tercera empresa más valiosa del mundo. Su negocio de publicidad le da colchón cuando la IA asusta.",
+      "en": "Down only 2.7%, far less than the rest of tech, and it overtook Nvidia as the world’s third most valuable company. Its ad business cushions it when AI fears flare.",
+      "pt": "Caiu só 2,7%, bem menos que o resto da tecnologia, e passou a Nvidia como terceira empresa mais valiosa do mundo. O negócio de publicidade amortece quando a IA assusta.",
+      "fr": "Seulement −2,7 %, bien moins que le reste de la tech, et dépasse Nvidia comme troisième entreprise la plus valorisée. Sa publicité l’amortit quand l’IA fait peur.",
+      "de": "Nur −2,7 %, deutlich weniger als der Rest der Tech-Branche, und überholt Nvidia als drittwertvollstes Unternehmen. Das Werbegeschäft federt KI-Sorgen ab."
+    },
+    "META": {
+      "es": "Cayó 5,9 %. El mercado castiga cuánto planea gastar en IA en 2027, aunque su negocio de anuncios sigue fuerte.",
+      "en": "Down 5.9%. The market is punishing how much it plans to spend on AI in 2027, even though its ad business remains strong.",
+      "pt": "Caiu 5,9%. O mercado pune quanto ela planeja gastar com IA em 2027, embora o negócio de anúncios siga forte.",
+      "fr": "−5,9 %. Le marché sanctionne ses dépenses prévues en IA pour 2027, même si sa publicité reste solide.",
+      "de": "−5,9 %. Der Markt bestraft die geplanten KI-Ausgaben für 2027, obwohl das Werbegeschäft stark bleibt."
+    },
+    "AMD": {
+      "es": "Cayó 13 % junto con todo el sector de chips. Se mueve muy pegado a Nvidia y al ánimo con la IA.",
+      "en": "Down 13% along with the whole chip sector. It moves closely with Nvidia and AI sentiment.",
+      "pt": "Caiu 13% junto com todo o setor de chips. Anda colada à Nvidia e ao humor com a IA.",
+      "fr": "−13 % avec tout le secteur des puces. Évolue de près avec Nvidia et le moral sur l’IA.",
+      "de": "−13 % mit dem ganzen Chipsektor. Läuft eng mit Nvidia und der KI-Stimmung."
+    },
+    "TSM": {
+      "es": "Cayó 9,5 % y la bolsa de Taiwán perdió 17 % en la semana, la peor desde 1990. TSMC fabrica los chips de casi todos, así que siente cualquier duda sobre la IA.",
+      "en": "Down 9.5%, and Taiwan’s market lost 17% on the week, its worst since 1990. TSMC makes chips for almost everyone, so it feels any doubt about AI.",
+      "pt": "Caiu 9,5% e a bolsa de Taiwan perdeu 17% na semana, a pior desde 1990. A TSMC fabrica chips para quase todos, então sente qualquer dúvida sobre a IA.",
+      "fr": "−9,5 %, et la bourse de Taïwan a perdu 17 % sur la semaine, du jamais vu depuis 1990. TSMC fabrique les puces de presque tout le monde : elle ressent chaque doute sur l’IA.",
+      "de": "−9,5 %, Taiwans Börse verlor 17 % in der Woche, so viel wie seit 1990 nicht. TSMC fertigt Chips für fast alle und spürt jeden KI-Zweifel."
+    },
+    "VOO": {
+      "es": "El S&P 500 cayó 3,4 % y entró en corrección. Cayó menos que las acciones sueltas de tecnología, como es normal en un fondo tan repartido.",
+      "en": "The S&P 500 fell 3.4% and entered a correction. It fell less than single tech stocks, as you’d expect from such a diversified fund.",
+      "pt": "O S&P 500 caiu 3,4% e entrou em correção. Caiu menos que ações individuais de tecnologia, como é normal num fundo tão diversificado.",
+      "fr": "Le S&P 500 a perdu 3,4 % et est entré en correction. Il a moins baissé que les actions tech seules, comme attendu pour un fonds aussi diversifié.",
+      "de": "Der S&P 500 fiel um 3,4 % und ist in einer Korrektur. Er verlor weniger als einzelne Tech-Aktien, wie bei einem so breit gestreuten Fonds üblich."
+    }
+  }
+}

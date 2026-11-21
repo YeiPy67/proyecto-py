@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Proyecto Py</title>
+<meta name="description" content="Proyecto Py">
+<meta name="theme-color" content="#0b1118">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side" aria-label="Menú">
+    <a class="brand" href="#home"><span class="logo" aria-hidden="true">Py</span><span><b>Proyecto Py</b><small data-t="app.tag"></small></span></a>
+    <nav class="sidenav" id="sidenav"></nav>
+    <div class="side-ad" id="sideAd"></div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <a class="brand m-only" href="#home"><span class="logo" aria-hidden="true">Py</span><b>Proyecto Py</b></a>
+      <div class="status">
+        <span class="mk" id="mk"><i></i><span id="mkTxt"></span></span>
+        <span class="upd" id="upd"></span>
+      </div>
+      <div class="top-actions">
+        <a class="iconbtn" href="#premium" id="topPremium" aria-label="Premium" title="Premium">★</a>
+        <button class="iconbtn" id="themeBtn" type="button" aria-label="Tema" title="Tema"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
+        <a class="iconbtn" href="#settings" aria-label="Ajustes" title="Ajustes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></a>
+      </div>
+    </header>
+    <div class="tape" aria-hidden="true"><div class="track" id="tape"></div></div>
+
+    <main id="views">
+      <!-- INICIO -->
+      <section class="view" id="v-home">
+        <div class="hello"><h1 id="hello"></h1><p class="muted" id="helloDate"></p></div>
+        <div class="kpis" id="kpis"></div>
+        <div class="grid-home">
+          <div class="card pad stack">
+            <div class="sh"><h2 data-t="home.forYou"></h2><span class="note" data-t="home.forYouSub"></span></div>
+            <div id="forYou" class="foryou"></div>
+          </div>
+          <div class="stack">
+            <a class="card teaser" href="#analysis"><span class="lbl" id="tzDate"></span><h3 id="tzTit"></h3><p class="muted small" id="tzSub"></p><span class="link" data-t="home.readAn"></span></a>
+            <div class="card pad stack locked-card" id="personal">
+              <div class="sh"><h3 data-t="home.personal"></h3><span class="pill-pr">★ Premium</span></div>
+              <p class="small muted" data-t="home.personalTxt"></p>
+              <div id="personalBody"></div>
+            </div>
+            <div class="card pad stack">
+              <div class="sh"><h3 data-t="home.next"></h3><a class="small" href="#dates" data-t="home.seeAll"></a></div>
+              <div id="homeEvents" class="mini-events"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-slot" data-ad></div>
+      </section>
+
+      <!-- MERCADO -->
+      <section class="view" id="v-market">
+        <div class="sh"><h1 data-t="nav.market"></h1><span class="note" data-t="mkt.hint"></span></div>
+        <div class="profiles">
+          <div class="chips" id="profChips" role="group"></div>
+          <div class="chips">
+            <button class="btn sm" id="profNew" type="button">＋ <span data-t="mkt.new"></span></button>
+            <button class="btn sm" id="profEdit" type="button" data-t="mkt.edit"></button>
+            <button class="btn sm danger" id="profDel" type="button" data-t="mkt.del"></button>
+          </div>
+        </div>
+        <div class="card editor" id="editor" hidden>
+          <div class="field"><label for="profName" data-t="mkt.name"></label><input type="text" id="profName" maxlength="30"></div>
+          <div class="cats" id="profCats"></div>
+          <div class="row"><button class="btn pri" id="profSave" type="button" data-t="mkt.save"></button><button class="btn" id="profCancel" type="button" data-t="mkt.cancel"></button><span class="note" id="profMsg"></span></div>
+        </div>
+        <div class="term">
+          <div class="card chartcard">
+            <div class="chead">
+              <div class="stack0">
+                <span class="small muted" id="cName"></span>
+                <div class="pxrow"><span class="px" id="cPx"></span><span id="cChg"></span></div>
+                <span class="small muted" id="cRange"></span>
+              </div>
+              <div class="seg" id="modeSeg" role="group"><button type="button" data-m="one" data-t="mkt.price"></button><button type="button" data-m="cmp" data-t="mkt.compare"></button></div>
+            </div>
+            <div class="period">
+              <div class="seg" id="rangeSeg" role="group"></div>
+              <input type="range" id="period" min="0" max="1000" step="1" aria-label="Período">
+              <b id="periodLbl"></b>
+            </div>
+            <div class="legend" id="legend" hidden></div>
+            <div class="chartbox" id="chartbox"><svg class="big" id="big" role="img" aria-label="Gráfico"></svg><div class="tip" id="tip" hidden></div></div>
+            <div class="stats" id="stats"></div>
+            <div class="target" id="targetRow">
+              <label for="target" data-t="mkt.target"></label><input type="number" id="target" min="0" step="0.5">
+              <span id="targetMsg" class="muted small"></span>
+              <button class="btn sm" id="alertBtn" type="button">🔔 <span data-t="mkt.tAlert"></span></button>
+            </div>
+            <div class="links" id="cLinks"></div>
+          </div>
+          <div class="card watch"><div class="wh"><span class="lbl" id="watchTitle"></span><span class="small muted" data-t="mkt.day"></span></div><div id="watch"></div></div>
+        </div>
+        <div class="ad-slot" data-ad></div>
+      </section>
+
+      <!-- CARTERA -->
+      <section class="view" id="v-portfolio">
+        <div class="sh"><h1 data-t="nav.portfolio"></h1><span class="note" data-t="port.sub"></span></div>
+        <div class="port-top">
+          <div class="card pad stack" id="portSummary"></div>
+          <div class="card pad donutcard"><span class="lbl" data-t="port.split"></span><svg class="donut" id="donut" viewBox="0 0 220 220" role="img"></svg><div class="dlegend" id="dlegend"></div></div>
+        </div>
+        <div class="card">
+          <div class="pad form-row">
+            <div class="field"><label for="bSym" data-t="port.what"></label><select id="bSym"></select></div>
+            <div class="field"><label for="bDate" data-t="port.date"></label><input type="date" id="bDate"></div>
+            <div class="field"><label for="bUsd" data-t="port.amount"></label><input type="number" id="bUsd" min="0" step="1" placeholder="40"></div>
+            <div class="field"><label for="bPx" data-t="port.px"></label><input type="number" id="bPx" min="0" step="0.01"></div>
+            <button class="btn pri tall" id="bAdd" type="button" data-t="port.add"></button>
+          </div>
+          <div class="tablebox"><table class="t-buys"><thead><tr><th data-t="port.asset"></th><th data-t="port.date"></th><th class="r" data-t="port.inv"></th><th class="r" data-t="port.units"></th><th class="r" data-t="port.now"></th><th class="r" data-t="port.gain"></th><th class="r" id="thLocal"></th><th></th></tr></thead><tbody id="buys"></tbody></table></div>
+        </div>
+        <div class="grid2">
+          <div class="card pad stack locked-card" id="alertsCard"><div class="sh"><h3 data-t="port.alerts"></h3><span class="pill-pr">★ Premium</span></div><p class="small muted" data-t="port.alertsSub"></p><div id="alertsBody"></div></div>
+          <div class="card pad stack"><h3 data-t="port.broker"></h3><p class="small muted" data-t="port.brokerSub"></p><button class="btn pri" type="button" data-ph="aff" data-t="port.brokerBtn"></button></div>
+        </div>
+      </section>
+
+      <!-- NOTICIAS -->
+      <section class="view" id="v-news">
+        <div class="sh"><h1 data-t="nav.news"></h1></div>
+        <div class="ntools"><div class="seg scrollx" id="ntabs" role="group"></div><input type="search" id="nq" data-tp="news.search"></div>
+        <label class="check"><input type="checkbox" id="nLang"> <span data-t="news.lang"></span></label>
+        <div class="card ai-brief" id="aiBrief" hidden><span class="lbl">✦ <span data-t="news.ai"></span></span><div id="aiBriefBody"></div></div>
+        <div class="card" id="newsList"></div>
+      </section>
+
+      <!-- MÁS -->
+      <section class="view" id="v-more">
+        <div class="sh"><h1 data-t="nav.more"></h1></div>
+        <div class="more-grid" id="moreGrid"></div>
+        <div class="ad-slot" data-ad></div>
+      </section>
+
+      <!-- SIMULADOR -->
+      <section class="view" id="v-sim">
+        <div class="sh"><h1 data-t="nav.sim"></h1></div>
+        <details class="how"><summary data-t="sim.how"></summary><ul><li data-t="sim.h1"></li><li data-t="sim.h2"></li><li data-t="sim.h3"></li><li data-t="sim.h4"></li></ul></details>
+        <div class="proj">
+          <div class="card pad stack">
+            <div class="fields">
+              <div class="field"><label for="sIni"><span data-t="sim.ini"></span> (<span class="cur"></span>)</label><input type="number" id="sIni" min="0" step="1000"></div>
+              <div class="field"><label for="sMes"><span data-t="sim.month"></span> (<span class="cur"></span>)</label><input type="number" id="sMes" min="0" step="100"></div>
+              <div class="field"><label for="sSube" data-t="sim.raise"></label><input type="number" id="sSube" min="0" max="50" step="1"></div>
+              <div class="field"><label for="sMeta"><span data-t="sim.goal"></span> (<span class="cur"></span>)</label><input type="number" id="sMeta" min="0" step="1000"></div>
+            </div>
+            <div class="field"><label for="sAnios" id="sAniosL"></label><input type="range" id="sAnios" min="1" max="40" step="1"></div>
+            <div class="chartbox" id="projBox"><svg class="big" id="projChart" role="img"></svg><div class="tip" id="ptip" hidden></div></div>
+          </div>
+          <div class="stack">
+            <div class="card pad scen" id="scen"></div>
+            <div class="card pad stack"><h3 data-t="sim.crash"></h3><p class="small muted" data-t="sim.crashTxt"></p><p id="crash"></p></div>
+          </div>
+        </div>
+        <div class="card pad stack">
+          <div class="sh"><h3 data-t="sim.tm"></h3><span class="note" data-t="sim.tmSub"></span></div>
+          <div class="fields">
+            <div class="field"><label for="tmSym" data-t="sim.tmWhat"></label><select id="tmSym"></select></div>
+            <div class="field"><label for="tmMode" data-t="sim.tmHow"></label><select id="tmMode"><option value="once" data-t="sim.once"></option><option value="dca" data-t="sim.monthly"></option></select></div>
+            <div class="field"><label for="tmAmt"><span data-t="sim.amt"></span> (<span class="cur"></span>)</label><input type="number" id="tmAmt" min="0" step="100"></div>
+            <div class="field"><label for="tmYrs" id="tmYrsL"></label><input type="range" id="tmYrs" min="3" max="60" step="1"></div>
+          </div>
+          <div class="pl" id="tmOut"></div>
+          <div class="chartbox" id="tmBox"><svg class="big" id="tmChart" role="img"></svg><div class="tip" id="tmTip" hidden></div></div>
+          <p class="note" data-t="sim.tmNote"></p>
+        </div>
+      </section>
+
+      <!-- ANÁLISIS -->
+      <section class="view" id="v-analysis">
+        <div class="sh"><h1 data-t="nav.analysis"></h1><span class="note" data-t="an.by"></span></div>
+        <div class="card an-head"><span class="lbl" id="anDate"></span><h2 id="anTit"></h2><p id="anSub"></p><div class="an-cifras" id="anCif"></div></div>
+        <div class="an-warn" id="anOld" hidden></div>
+        <div class="an-secs" id="anSecs"></div>
+        <details class="how"><summary data-t="an.sources"></summary><ul id="anSrc"></ul></details>
+      </section>
+
+      <!-- FECHAS -->
+      <section class="view" id="v-dates">
+        <div class="sh"><h1 data-t="nav.dates"></h1><span class="small muted" id="nextEv"></span></div>
+        <div class="card pad stack">
+          <h3 data-t="dt.sub"></h3><p class="small muted" data-t="dt.subTxt"></p>
+          <div class="row"><a class="btn pri" id="gcal" target="_blank" rel="noopener" data-t="dt.google"></a><a class="btn" id="webcal" data-t="dt.apple"></a><button class="btn" id="copyIcs" type="button" data-t="dt.copy"></button></div>
+          <code id="icsUrl"></code>
+          <p class="note" data-t="dt.notion"></p>
+        </div>
+        <div class="seg" id="evTabs" role="group"></div>
+        <div class="card" id="tl"></div>
+      </section>
+
+      <!-- PASOS -->
+      <section class="view" id="v-steps">
+        <div class="sh"><h1 data-t="nav.steps"></h1><button class="btn sm" id="stepsReset" type="button" data-t="st.reset"></button></div>
+        <div class="prog"><div class="bar"><i id="stepBar"></i></div><span class="num small muted" id="stepCount"></span></div>
+        <div class="card"><ol class="steps" id="steps"></ol><form class="addrow" id="stepForm"><input type="text" id="stepNew" data-tp="st.ph"><button class="btn pri" type="submit" data-t="st.add"></button></form></div>
+        <p class="note" data-t="st.hint"></p>
+      </section>
+
+      <!-- PREMIUM -->
+      <section class="view" id="v-premium">
+        <div class="pr-hero card"><span class="pill-pr big">★ Premium</span><h1>Proyecto Py Premium</h1><p data-t="pr.sub"></p></div>
+        <div class="plans">
+          <div class="card pad plan-c"><span class="lbl" data-t="pr.free"></span><div class="price">0</div><p class="small muted" data-t="pr.freeF"></p></div>
+          <div class="card pad plan-c hi"><span class="lbl" data-t="pr.monthly"></span><div class="price">67<small>/<span data-t="pr.price"></span></small></div><ul class="feat"><li data-t="pr.f1"></li><li data-t="pr.f2"></li><li data-t="pr.f3"></li><li data-t="pr.f4"></li></ul><button class="btn pri" type="button" data-ph="pay" data-t="pr.cta"></button></div>
+          <div class="card pad plan-c"><span class="lbl" data-t="pr.yearly"></span><div class="price">67<small>/<span data-t="pr.price"></span></small></div><ul class="feat"><li data-t="pr.f1"></li><li data-t="pr.f2"></li><li data-t="pr.f3"></li><li data-t="pr.f4"></li></ul><button class="btn" type="button" data-ph="pay" data-t="pr.cta"></button></div>
+        </div>
+        <p class="note center" id="prState"></p>
+      </section>
+
+      <!-- AJUSTES -->
+      <section class="view" id="v-settings">
+        <div class="sh"><h1 data-t="nav.settings"></h1></div>
+        <div class="settings">
+          <div class="card pad stack"><span class="lbl" data-t="set.lang"></span><div class="seg wrap" id="setLang"></div></div>
+          <div class="card pad stack"><label class="lbl" for="setCur" data-t="set.cur"></label><select id="setCur"></select></div>
+          <div class="card pad stack"><span class="lbl" data-t="set.theme"></span><div class="seg" id="setTheme"></div></div>
+          <div class="card pad stack"><label class="check"><input type="checkbox" id="setDemo"> <span data-t="set.demo"></span></label></div>
+          <div class="card pad stack"><span class="lbl" data-t="set.data"></span><p class="small muted" data-t="set.dataSub"></p><div class="row"><button class="btn" id="expBtn" type="button" data-t="set.export"></button><label class="btn" for="impFile" data-t="set.import"></label><input type="file" id="impFile" accept="application/json" hidden><button class="btn danger" id="wipeBtn" type="button" data-t="set.wipe"></button></div></div>
+          <div class="card pad stack"><div class="sh"><span class="lbl" data-t="set.account"></span><span class="pill-soon" data-t="set.soon"></span></div><p class="small muted" data-t="set.accountSub"></p></div>
+          <div class="card pad stack"><span class="lbl" data-t="set.install"></span><p class="small muted" data-t="set.installTxt"></p><button class="btn" id="installBtn" type="button" hidden data-t="set.install"></button></div>
+          <div class="card pad stack"><span class="lbl" data-t="set.src"></span><p class="small muted" data-t="set.srcTxt"></p></div>
+          <div class="card pad stack wide"><span class="lbl" data-t="set.legal"></span><p class="small" data-t="set.legalTxt"></p></div>
+        </div>
+      </section>
+    </main>
+    <footer class="disc"><span data-t="disc.short"></span> · Proyecto Py</footer>
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="Menú"></nav>
+</div>
+
+<!-- Bienvenida -->
+<div class="overlay" id="onb" hidden>
+  <div class="onb card">
+    <div class="onb-head"><span class="logo big" aria-hidden="true">Py</span><b>Proyecto Py</b></div>
+    <div class="onb-step" data-step="1"><h2>🌍</h2><div class="langs" id="onbLangs"></div></div>
+    <div class="onb-step" data-step="2" hidden><h2 data-t="onb.cur"></h2><p class="muted" data-t="onb.curSub"></p><div class="curs" id="onbCurs"></div></div>
+    <div class="onb-step" data-step="3" hidden><h2 data-t="onb.follow"></h2><p class="muted" data-t="onb.followSub"></p><div class="chips" id="onbFollow"></div>
+      <label class="check"><input type="checkbox" id="onbDisc"> <span data-t="onb.disc"></span></label></div>
+    <div class="onb-foot"><button class="btn" id="onbBack" type="button" data-t="onb.back"></button><div class="dots" id="onbDots"></div><button class="btn pri" id="onbNext" type="button" data-t="onb.next"></button></div>
+  </div>
+</div>
+
+<!-- Anuncio al abrir -->
+<div class="overlay dark" id="inter" hidden>
+  <div class="inter"><span class="lbl" data-t="ad.label"></span><div class="ph67 huge"><b>67</b><span>tung tung tung sahur</span><small data-t="ph.ad"></small></div><button class="btn" id="interClose" type="button" disabled></button></div>
+</div>
+
+<!-- Ventana de marcador (pagos, afiliados) -->
+<div class="overlay" id="phModal" hidden>
+  <div class="card pad stack ph-card"><div class="ph67 huge"><b>67</b><span>tung tung tung sahur</span><small id="phMsg"></small></div><button class="btn pri" id="phClose" type="button" data-t="ad.close"></button></div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

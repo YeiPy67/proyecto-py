@@ -1,0 +1,74 @@
+{
+  "fecha_iso": "2026-11-20",
+  "titular": {
+    "es": "La semana en que la IA dejó de parecer invencible",
+    "en": "The week AI stopped looking invincible",
+    "pt": "A semana em que a IA deixou de parecer invencível",
+    "fr": "La semaine où l’IA a cessé de paraître invincible",
+    "de": "Die Woche, in der KI nicht mehr unbesiegbar wirkte"
+  },
+  "bajada": {
+    "es": "Siete caídas seguidas, Nvidia sin su fundador y bajo la lupa de la SEC, una salida a bolsa récord que no levantó el ánimo y una Fed que piensa subir tasas, no bajarlas.",
+    "en": "Seven straight losses, Nvidia without its founder and under SEC scrutiny, a record IPO that failed to lift spirits, and a Fed thinking about hiking, not cutting.",
+    "pt": "Sete quedas seguidas, a Nvidia sem seu fundador e sob a lupa da SEC, um IPO recorde que não animou ninguém e um Fed pensando em subir juros, não em cortar.",
+    "fr": "Sept baisses d’affilée, Nvidia sans son fondateur et dans le viseur de la SEC, une introduction record qui n’a pas rassuré, et une Fed qui pense à relever ses taux, pas à les baisser.",
+    "de": "Sieben Verlusttage in Folge, Nvidia ohne Gründer und im Visier der SEC, ein Rekord-Börsengang ohne Schwung und eine Fed, die eher erhöhen als senken will."
+  },
+  "cifras": [
+    {"v": "−3,6 %", "t": "dn", "l": {"es": "S&P 500 el viernes", "en": "S&P 500 on Friday", "pt": "S&P 500 na sexta", "fr": "S&P 500 vendredi", "de": "S&P 500 am Freitag"}, "s": {"es": "En corrección: más de 10 % bajo su máximo", "en": "In correction: over 10% below its high", "pt": "Em correção: mais de 10% abaixo do topo", "fr": "En correction : plus de 10 % sous son sommet", "de": "Korrektur: über 10 % unter dem Hoch"}},
+    {"v": "−5,3 %", "t": "dn", "l": {"es": "Nasdaq el viernes", "en": "Nasdaq on Friday", "pt": "Nasdaq na sexta", "fr": "Nasdaq vendredi", "de": "Nasdaq am Freitag"}, "s": {"es": "Borró todo lo ganado en 2026", "en": "Wiped out all its 2026 gains", "pt": "Apagou todo o ganho de 2026", "fr": "Efface tous ses gains de 2026", "de": "Alle Gewinne von 2026 weg"}},
+    {"v": "−14 %", "t": "dn", "l": {"es": "Nvidia el viernes", "en": "Nvidia on Friday", "pt": "Nvidia na sexta", "fr": "Nvidia vendredi", "de": "Nvidia am Freitag"}, "s": {"es": "Su peor semana desde 2008", "en": "Its worst week since 2008", "pt": "Sua pior semana desde 2008", "fr": "Sa pire semaine depuis 2008", "de": "Schlechteste Woche seit 2008"}},
+    {"v": "≈ 36", "t": "dn", "l": {"es": "Índice del miedo (VIX)", "en": "Fear index (VIX)", "pt": "Índice do medo (VIX)", "fr": "Indice de la peur (VIX)", "de": "Angstindex (VIX)"}, "s": {"es": "Más de 30 es pánico", "en": "Above 30 means panic", "pt": "Acima de 30 é pânico", "fr": "Au-delà de 30 : panique", "de": "Über 30 bedeutet Panik"}}
+  ],
+  "secciones": [
+    {
+      "titulo": {"es": "Qué pasó", "en": "What happened", "pt": "O que aconteceu", "fr": "Ce qui s’est passé", "de": "Was passiert ist"},
+      "puntos": {
+        "es": ["El S&P 500 cayó por séptima vez seguida, algo que no pasaba desde febrero de 2020, y entró en “corrección”. El Nasdaq perdió 5,3 % en un día.", "Nvidia se desplomó 14 %: además de la salida de Jensen Huang, varios medios reportan que la SEC revisa su contabilidad. Google le quitó el puesto de tercera empresa más valiosa del mundo.", "Anthropic tuvo la salida a bolsa más grande de la historia (83 USD, abrió en 111,50) y al día siguiente cayó 8,5 % a 88,91. Asia vivió su peor semana desde 2020."],
+        "en": ["The S&P 500 fell for a seventh straight day, the first such streak since February 2020, and entered a “correction”. The Nasdaq lost 5.3% in one day.", "Nvidia plunged 14%: on top of Jensen Huang’s exit, several outlets report the SEC is reviewing its accounting. Google took its spot as the world’s third most valuable company.", "Anthropic had the largest IPO ever (priced at $83, opened at $111.50) and fell 8.5% to $88.91 the next day. Asia had its worst week since 2020."],
+        "pt": ["O S&P 500 caiu pela sétima vez seguida, algo que não acontecia desde fevereiro de 2020, e entrou em “correção”. A Nasdaq perdeu 5,3% em um dia.", "A Nvidia despencou 14%: além da saída de Jensen Huang, vários veículos relatam que a SEC está revisando sua contabilidade. O Google tomou seu lugar de terceira empresa mais valiosa do mundo.", "A Anthropic fez o maior IPO da história (US$ 83, abriu a US$ 111,50) e no dia seguinte caiu 8,5%, para US$ 88,91. A Ásia teve sua pior semana desde 2020."],
+        "fr": ["Le S&P 500 a reculé pour la septième séance d’affilée, une première depuis février 2020, et est entré en « correction ». Le Nasdaq a perdu 5,3 % en une journée.", "Nvidia a plongé de 14 % : en plus du départ de Jensen Huang, plusieurs médias indiquent que la SEC examine sa comptabilité. Google lui a ravi la place de troisième entreprise la plus valorisée au monde.", "Anthropic a réalisé la plus grosse introduction en bourse de l’histoire (83 $, ouverture à 111,50 $) puis a chuté de 8,5 % à 88,91 $ le lendemain. L’Asie a vécu sa pire semaine depuis 2020."],
+        "de": ["Der S&P 500 fiel den siebten Tag in Folge, erstmals seit Februar 2020, und ist in einer „Korrektur“. Der Nasdaq verlor an einem Tag 5,3 %.", "Nvidia stürzte um 14 % ab: Neben dem Abgang von Jensen Huang berichten mehrere Medien, dass die SEC die Bilanzierung prüft. Google überholte Nvidia als drittwertvollstes Unternehmen der Welt.", "Anthropic legte den größten Börsengang aller Zeiten hin (83 $, Eröffnung bei 111,50 $) und fiel am Tag danach um 8,5 % auf 88,91 $. Asien erlebte die schlechteste Woche seit 2020."]
+      }
+    },
+    {
+      "titulo": {"es": "Por qué pasó", "en": "Why it happened", "pt": "Por que aconteceu", "fr": "Pourquoi", "de": "Warum"},
+      "puntos": {
+        "es": ["Miedo a que la IA esté sobrevalorada: las empresas gastan cantidades enormes en centros de datos y el mercado duda de que eso vaya a pagar.", "La Fed se puso dura: el empleo de octubre salió casi tres veces más fuerte de lo esperado y el mercado apuesta a que SUBA la tasa el 9 de diciembre. Con tasas altas, las acciones de crecimiento valen menos.", "Política: crece el rechazo a los centros de datos tras las elecciones de mitad de período en EE. UU. Más regulación significa más costos para la IA."],
+        "en": ["Fear that AI is overvalued: companies are spending huge sums on data centers and the market doubts it will pay off.", "The Fed turned hawkish: October jobs came in nearly three times stronger than expected, and markets now bet on a HIKE on December 9. Higher rates make growth stocks worth less.", "Politics: opposition to data centers is growing after the US midterms. More regulation means higher costs for AI."],
+        "pt": ["Medo de que a IA esteja supervalorizada: as empresas gastam fortunas em data centers e o mercado duvida que isso vá se pagar.", "O Fed endureceu: o emprego de outubro veio quase três vezes mais forte que o esperado e o mercado aposta numa ALTA dos juros em 9 de dezembro. Com juros altos, ações de crescimento valem menos.", "Política: cresce a rejeição aos data centers após as eleições de meio de mandato nos EUA. Mais regulação significa mais custos para a IA."],
+        "fr": ["La crainte d’une IA surévaluée : les entreprises dépensent des sommes énormes en centres de données et le marché doute que cela rapporte.", "La Fed se durcit : l’emploi d’octobre est sorti presque trois fois plus fort que prévu et le marché parie sur une HAUSSE des taux le 9 décembre. Avec des taux élevés, les valeurs de croissance valent moins.", "La politique : l’opposition aux centres de données grandit après les élections de mi-mandat aux États-Unis. Plus de régulation, c’est plus de coûts pour l’IA."],
+        "de": ["Angst vor einer KI-Überbewertung: Firmen geben riesige Summen für Rechenzentren aus, und der Markt zweifelt, ob sich das lohnt.", "Die Fed wird strenger: Die Oktober-Jobzahlen waren fast dreimal so stark wie erwartet, nun wird auf eine ZINSERHÖHUNG am 9. Dezember gesetzt. Höhere Zinsen drücken den Wert von Wachstumsaktien.", "Politik: Nach den US-Zwischenwahlen wächst der Widerstand gegen Rechenzentren. Mehr Regulierung heißt höhere Kosten für KI."]
+      }
+    },
+    {
+      "titulo": {"es": "Qué significa para las empresas y el mercado", "en": "What it means for companies and the market", "pt": "O que significa para as empresas e o mercado", "fr": "Ce que cela signifie pour les entreprises et le marché", "de": "Was es für Unternehmen und Markt bedeutet"},
+      "puntos": {
+        "es": ["Nvidia: no hay señales de que venda menos chips; el problema es de confianza. Hasta que haya CEO permanente y la SEC termine, va a moverse mucho.", "Anthropic: depende del ánimo con la IA. El 15 de diciembre empleados pueden vender unas 303 millones de acciones, y eso suele presionar el precio.", "Una corrección (−10 %) pasa más o menos cada uno o dos años. Con el VIX por encima de 30 vienen días de rebotes y caídas fuertes seguidos. La fecha clave es la Fed, el 9 de diciembre."],
+        "en": ["Nvidia: no sign it’s selling fewer chips; the issue is trust. Until there’s a permanent CEO and the SEC wraps up, expect big swings.", "Anthropic: it trades on AI sentiment. On December 15 employees may sell about 303 million shares, which tends to weigh on the price.", "A correction (−10%) happens roughly every one to two years. With the VIX above 30, sharp rallies and drops tend to alternate. The key date is the Fed on December 9."],
+        "pt": ["Nvidia: não há sinais de que venda menos chips; o problema é de confiança. Até haver um CEO permanente e a SEC concluir, vai oscilar muito.", "Anthropic: depende do humor com a IA. Em 15 de dezembro funcionários poderão vender cerca de 303 milhões de ações, o que costuma pressionar o preço.", "Uma correção (−10%) acontece mais ou menos a cada um ou dois anos. Com o VIX acima de 30, altas e quedas fortes se alternam. A data-chave é o Fed, em 9 de dezembro."],
+        "fr": ["Nvidia : rien n’indique qu’elle vend moins de puces ; le problème est la confiance. Tant qu’il n’y a pas de PDG permanent et que la SEC n’a pas conclu, ça va bouger fort.", "Anthropic : suit le moral sur l’IA. Le 15 décembre, des salariés pourront vendre environ 303 millions d’actions, ce qui pèse souvent sur le cours.", "Une correction (−10 %) survient environ tous les un à deux ans. Avec un VIX au-dessus de 30, rebonds et chutes violents s’enchaînent. Date clé : la Fed, le 9 décembre."],
+        "de": ["Nvidia: Kein Hinweis auf weniger Chipverkäufe; es geht um Vertrauen. Bis es einen festen CEO gibt und die SEC fertig ist, bleibt es volatil.", "Anthropic: hängt an der KI-Stimmung. Am 15. Dezember dürfen Mitarbeiter rund 303 Mio. Aktien verkaufen, was den Kurs oft belastet.", "Eine Korrektur (−10 %) kommt etwa alle ein bis zwei Jahre. Mit einem VIX über 30 wechseln sich starke Erholungen und Einbrüche ab. Schlüsseltermin: die Fed am 9. Dezember."]
+      }
+    },
+    {
+      "titulo": {"es": "Qué significa para ti", "en": "What it means for you", "pt": "O que significa para você", "fr": "Ce que cela signifie pour vous", "de": "Was es für Sie bedeutet"},
+      "ti": true,
+      "puntos": {
+        "es": ["Si tienes acciones de IA o chips, es normal ver números rojos fuertes estos días. Mira cuánto pesan en tu cartera: si una sola caída te quita el sueño, quizás pesan demasiado.", "Si estás por comprar, algo barato puede ponerse más barato. Mucha gente divide la compra en partes (antes y después de la Fed, por ejemplo) para no entrar todo en un mal día.", "Los fondos amplios como el S&P 500 cayeron menos que las acciones sueltas. Para eso sirven: amortiguar los golpes."],
+        "en": ["If you own AI or chip stocks, big red numbers are normal these days. Check how much they weigh in your portfolio: if one drop keeps you up at night, they may weigh too much.", "If you’re about to buy, cheap can get cheaper. Many people split purchases into parts (for example, before and after the Fed) so they don’t go all in on a bad day.", "Broad funds like the S&P 500 fell less than single stocks. That’s their job: to soften the blows."],
+        "pt": ["Se você tem ações de IA ou chips, é normal ver números vermelhos fortes nestes dias. Veja quanto pesam na sua carteira: se uma única queda tira seu sono, talvez pesem demais.", "Se vai comprar, o barato pode ficar mais barato. Muita gente divide a compra em partes (antes e depois do Fed, por exemplo) para não entrar tudo num dia ruim.", "Fundos amplos como o S&P 500 caíram menos que ações individuais. É para isso que servem: amortecer os golpes."],
+        "fr": ["Si vous détenez des actions IA ou de puces, de gros chiffres rouges sont normaux ces jours-ci. Regardez leur poids dans votre portefeuille : si une seule baisse vous empêche de dormir, elles pèsent peut-être trop.", "Si vous comptez acheter, ce qui est bon marché peut le devenir encore plus. Beaucoup fractionnent leurs achats (avant et après la Fed, par exemple) pour ne pas tout investir un mauvais jour.", "Les fonds larges comme le S&P 500 ont moins baissé que les actions seules. C’est leur rôle : amortir les chocs."],
+        "de": ["Wer KI- oder Chipaktien hat, sieht dieser Tage normalerweise kräftige rote Zahlen. Prüfen Sie ihr Gewicht im Portfolio: Wenn Sie ein einzelner Einbruch nicht schlafen lässt, ist es vielleicht zu hoch.", "Wer kaufen will: Günstig kann noch günstiger werden. Viele teilen Käufe auf (zum Beispiel vor und nach der Fed), um nicht alles an einem schlechten Tag zu investieren.", "Breite Fonds wie der S&P 500 fielen weniger als Einzelaktien. Dafür sind sie da: Stöße abfedern."]
+      }
+    }
+  ],
+  "fuentes": [
+    ["Fortune", "https://fortune.com/2026/11/20/sp-500-correction-panic-selling-ai-selloff-nasdaq-2026-gains-bnp-paribas/"],
+    ["Washington Times", "https://www.washingtontimes.com/news/2026/nov/20/us-stocks-tumble-sp-500-falls-sell-ai-stocks-accelerates/"],
+    ["TradingKey", "https://www.tradingkey.com/analysis/stocks/us-stocks/262316111-nasdaq-falls-ai-stock-selloff-nvidia-sec-probe-tradingkey"],
+    ["MarketScreener", "https://www.marketscreener.com/news/stocks-slide-as-ai-selloff-deepens-asia-has-worst-week-since-2020-ce785ed3db89f623"],
+    ["24/7 Wall St.", "https://247wallst.com/investing/2026/11/07/odds-of-a-december-rate-hike-jump-to-77-after-a-blowout-jobs-report/"],
+    ["AI Stock Wire", "https://aistockwire.com/blog/anthropic-ant-ipo-lockup-expiration-dates-calendar"]
+  ]
+}
