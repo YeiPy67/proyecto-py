@@ -31,3 +31,10 @@ Guía de marca (nueva): https://yeipy67.github.io/proyecto-py/marca.html  — ta
 1. Abre la app (si no ves cambios, recarga; la primera vez puede tardar un par de minutos).
 2. Mira la guía de marca y dime qué te gusta y qué no (logo, colores, fondo).
 3. Prueba el modo oscuro (botón de luna arriba).
+
+
+---
+# Actualización (después de tus comentarios)
+- **Parpadeo del Inicio arreglado:** los precios en vivo ya no redibujan la pantalla; solo cambia el número.
+- **Colores nuevos: "cuaderno y pizarra".** Claro = cuaderno cuadriculado (tinta azul, bolígrafo verde/rojo, resaltador amarillo). Oscuro = pizarra con tiza. Bienvenida y lecciones en pizarra, con el "Hola" escrito a mano.
+- **Inicio rediseñado en 5 rondas:** tu día en una frase (con resaltador) → tu dinero con la curva de 30 días → 4 accesos rápidos → "Lo importante hoy" (máx. 4 cosas) → dato del día o cifras según tu nivel → consejo. En computador va en dos columnas.

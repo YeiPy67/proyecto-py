@@ -9,7 +9,10 @@ const PyVivo=(()=>{
     const sr=p.serie;if(sr?.length)sr[sr.length-1][1]=px;dirty=true};
   function refresh(){if(!dirty)return;dirty=false;const a=document.activeElement;
     if(document.querySelector(".sheet-wrap")||!$("impModal").hidden||(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName)))return void(dirty=true);
-    if(["home","market","portfolio"].includes(VIEW)){window.LIVE_TICK=true;try{render()}finally{window.LIVE_TICK=false}}}
+    // Solo se actualizan los números que cambian, sin volver a dibujar la pantalla (eso causaba el parpadeo)
+    document.querySelectorAll("[data-live]").forEach(n=>{const sym=n.dataset.live,p=D.precios[sym];if(!p)return;
+      const txt=n.dataset.kind==="chg"?pctf(p.cambio):fmtPx(sym,p.precio);if(n.textContent!==txt){n.textContent=txt;if(n.dataset.kind==="chg")n.className="chg "+(p.cambio>=0?"up":"dn")}});
+    if(VIEW==="home"&&window.homeLive)window.homeLive()}
   function crypto(){try{const ws=new WebSocket("wss://ws-feed.exchange.coinbase.com");
       ws.onopen=()=>ws.send(JSON.stringify({type:"subscribe",product_ids:Object.values(CRYPTO),channels:["ticker"]}));
       ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.type!=="ticker")return;const px=+m.price,open=+m.open_24h;touch(m.product_id,px,open?(px-open)/open*100:null)};
