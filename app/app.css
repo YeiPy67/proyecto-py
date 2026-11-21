@@ -1056,3 +1056,23 @@ body{background:var(--bg)!important;background-image:none!important}
 }
 .lesson.done b{color:var(--muted)}
 .lesson.done .sym-tile{background:var(--fg)!important;color:var(--bg)!important}
+/* Ronda 34: las filas de revisión de Anotar compra tenían el mismo nombre que las de "Lo importante hoy" */
+#impRows .imp-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;grid-template-areas:"w w x" "q p p" "a a a";gap:10px;align-items:end;padding:14px;border:1px solid var(--line)!important;border-radius:14px;background:var(--surface)!important;transform:none!important;margin-bottom:10px}
+#impRows .imp-row .field{display:grid;gap:4px;min-width:0}
+#impRows .imp-row .field span{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#impRows .imp-row .field:nth-child(1){grid-area:w}
+#impRows .imp-row .field:nth-child(2){grid-area:q}
+#impRows .imp-row .field:nth-child(3){grid-area:p}
+#impRows .imp-row .field:nth-child(4){grid-area:a}
+#impRows .imp-row>.ob{grid-area:x;align-self:end;margin-bottom:6px}
+#impRows .imp-row input,#impRows .imp-row select{width:100%;min-width:0}
+@media (min-width:700px){#impRows .imp-row{grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr) minmax(0,1fr) minmax(0,1fr) auto;grid-template-areas:"w q p a x"}}
+@media (min-width:900px){#impModal .card.imp:has(#imp-review:not([hidden])){width:min(860px,94vw);max-width:none}}
+/* Ronda 39: Cartera vacía sin anillo gris */
+#v-portfolio .donutcard[hidden]{display:none!important}
+#v-portfolio.is-empty .port-top{grid-template-columns:1fr!important}
+/* Ronda 40: todos los desplegables con el mismo "+" */
+details>summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"+";font:300 1.4rem/1 var(--body);color:var(--muted);transition:transform .3s var(--spring);flex:none}
+details[open]>summary::after{transform:rotate(45deg)}

@@ -97,11 +97,11 @@ const PyImport=(()=>{
     $("impNone").hidden=!!rows.length;
     rows.forEach((r,i)=>{const row=el("div",{class:"imp-row"});
       const sel=el("select",{"aria-label":t("port.what")});ALL.filter(s=>!["^VIX","BZ=F"].includes(s)).forEach(s=>sel.append(el("option",{value:s},`${lab(s)} · ${nm(s)}`)));sel.value=r.s;sel.onchange=()=>r.s=sel.value;
-      const q=el("input",{type:"number",step:"any",min:"0",placeholder:t("imp.units"),"aria-label":t("imp.units")});q.value=r.q??"";q.oninput=()=>r.q=q.value===""?null:+q.value;
-      const px=el("input",{type:"number",step:"any",min:"0",placeholder:t("imp.cost"),"aria-label":t("imp.cost")});px.value=r.px??"";px.oninput=()=>r.px=px.value===""?null:+px.value;
+      const q=el("input",{type:"text",inputmode:"decimal",placeholder:"0",autocomplete:"off","aria-label":t("imp.units")});q.value=r.q!=null?String(r.q).replace(".",loc().startsWith("en")?".":","):"";q.oninput=()=>{const v=PyParse.num?PyParse.num(q.value):+q.value.replace(",",".");r.q=q.value===""||!isFinite(v)?null:v;$("impSave").textContent=t("imp.save",{n:rows.filter(r=>r.q>0).length});$("impSave").disabled=!rows.some(r=>r.q>0)};
+      const px=el("input",{type:"text",inputmode:"decimal",placeholder:"—",autocomplete:"off","aria-label":t("imp.cost")});px.value=r.px!=null?String(r.px).replace(".",loc().startsWith("en")?".":","):"";px.oninput=()=>{const v=PyParse.num?PyParse.num(px.value):+px.value.replace(",",".");r.px=px.value===""||!isFinite(v)?null:v};
       const ac=el("input",{type:"text",placeholder:t("imp.where"),"aria-label":t("imp.where"),list:"impApps"});ac.value=r.acct||"";ac.oninput=()=>r.acct=ac.value;
       const del=el("button",{class:"ob",type:"button","aria-label":t("mkt.del")},"✕");del.onclick=()=>{rows.splice(i,1);drawRows()};
-      const lbls=[["port.what",sel],["imp.units",q],["imp.cost",px],["imp.where",ac]].map(([k,inp])=>{const f=el("label",{class:"field"});f.append(el("span",{},t(k)),inp);return f});
+      const lbls=[["port.what",sel],["imp.units",q],["imp.cost",px],["imp.where",ac]].map(([k,inp])=>{const f=el("label",{class:"field"}),full=t(k),m=full.match(/\s*\(([^)]*)\)\s*$/);if(m&&!inp.value)inp.placeholder=m[1];f.append(el("span",{title:full},m?full.slice(0,m.index):full),inp);return f});
       row.append(...lbls,del);box.append(row)});
     $("impSave").textContent=t("imp.save",{n:rows.filter(r=>r.q>0).length});$("impSave").disabled=!rows.some(r=>r.q>0)}
   function save(){const ok=rows.filter(r=>r.q>0&&D.precios[r.s]);const today=new Date(END).toISOString().slice(0,10);
