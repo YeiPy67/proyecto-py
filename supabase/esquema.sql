@@ -11,3 +11,5 @@ create policy "leer lo mío"   on public.datos for select using (auth.uid() = us
 create policy "crear lo mío"  on public.datos for insert with check (auth.uid() = user_id);
 create policy "cambiar lo mío" on public.datos for update using (auth.uid() = user_id);
 create policy "borrar lo mío" on public.datos for delete using (auth.uid() = user_id);
+-- La app entra como "authenticated": necesita permiso sobre la tabla (las reglas de arriba limitan a lo propio).
+grant select, insert, update, delete on public.datos to authenticated;
