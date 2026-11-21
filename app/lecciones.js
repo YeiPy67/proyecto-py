@@ -123,6 +123,7 @@ window.TXT3={
 "les.path":["Aprende desde cero","Learn from scratch","Aprenda do zero","Apprendre depuis zéro","Von null an lernen"],
 "les.glossary":["Diccionario","Glossary","Dicionário","Lexique","Glossar"],
 "set.level":["Tu nivel","Your level","Seu nível","Votre niveau","Ihr Niveau"],
+"set.brand":["Identidad visual","Visual identity","Identidade visual","Identité visuelle","Visuelle Identität"],
 "set.welcome":["Ver la bienvenida otra vez","See the welcome again","Ver as boas-vindas de novo","Revoir l’accueil","Begrüßung erneut zeigen"]
 };
 Object.assign(window.TXT,window.TXT3);

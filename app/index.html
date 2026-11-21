@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Proyecto Py</title>
 <meta name="description" content="Proyecto Py">
-<meta name="theme-color" content="#18143a">
+<meta name="theme-color" content="#14102e">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=STIX+Two+Text:ital,wght@1,500;1,600&display=swap">
 <link rel="stylesheet" href="app.css">
 </head>
 <body class="loading">
 <div class="skel" id="skel" aria-hidden="true"><span class="logo big">Py</span></div>
 <div class="shell">
   <aside class="side" aria-label="Menú">
-    <a class="brand" href="#home"><span class="logo" aria-hidden="true">Py</span><span><b>Proyecto Py</b><small data-t="app.tag"></small></span></a>
+    <a class="brand" href="#home"><span class="logo" aria-hidden="true">Py</span><span><b class="wordmark">Proyecto <em>Py</em></b><small data-t="app.tag"></small></span></a>
     <button class="add-cta" type="button" data-imp="menu">＋ <span data-t="port.addBtn"></span></button>
     <nav class="sidenav" id="sidenav"></nav>
     <p class="side-not" data-t="app.not"></p>
@@ -26,7 +26,7 @@
 
   <div class="main">
     <header class="top">
-      <a class="brand m-only" href="#home"><span class="logo" aria-hidden="true">Py</span><b>Proyecto Py</b></a>
+      <a class="brand m-only" href="#home"><span class="logo" aria-hidden="true">Py</span><b class="wordmark">Proyecto <em>Py</em></b></a>
       <div class="status">
         <span class="mk" id="mk"><i></i><span id="mkTxt"></span></span>
         <span class="upd" id="upd"></span>
@@ -224,7 +224,7 @@
 
       <!-- PREMIUM -->
       <section class="view" id="v-premium">
-        <div class="pr-hero card"><span class="pill-pr big">★ Premium</span><h1>Proyecto Py Premium</h1><p data-t="pr.sub"></p></div>
+        <div class="pr-hero card"><span class="pill-pr big">★ Premium</span><h1 class="wordmark">Proyecto <em>Py</em> Premium</h1><p data-t="pr.sub"></p></div>
         <div class="plans">
           <div class="card pad plan-c"><span class="lbl" data-t="pr.free"></span><div class="price">0</div><p class="small muted" data-t="pr.freeF"></p></div>
           <div class="card pad plan-c hi"><span class="lbl" data-t="pr.monthly"></span><div class="price">67<small>/<span data-t="pr.price"></span></small></div><ul class="feat"><li data-t="pr.f1"></li><li data-t="pr.f2"></li><li data-t="pr.f3"></li><li data-t="pr.f4"></li></ul><button class="btn pri" type="button" data-ph="pay" data-t="pr.cta"></button></div>
@@ -245,6 +245,7 @@
           <div class="card pad stack"><span class="lbl" data-t="set.data"></span><p class="small muted" data-t="set.dataSub"></p><div class="row"><button class="btn" id="expBtn" type="button" data-t="set.export"></button><label class="btn" for="impFile" data-t="set.import"></label><input type="file" id="impFile" accept="application/json" hidden><button class="btn danger" id="wipeBtn" type="button" data-t="set.wipe"></button></div></div>
           <div class="card pad stack" id="acctCard"></div>
           <div class="card pad stack"><span class="lbl" data-t="set.install"></span><p class="small muted" data-t="set.installTxt"></p><button class="btn" id="installBtn" type="button" hidden data-t="set.install"></button></div>
+          <a class="card pad stack brand-link" href="marca.html"><span class="lbl" data-t="set.brand"></span><span class="wordmark">Proyecto <em>Py</em> · π</span></a>
           <div class="card pad stack"><span class="lbl" data-t="set.src"></span><p class="small muted" data-t="set.srcTxt"></p></div>
           <div class="card pad stack wide"><span class="lbl" data-t="set.legal"></span><p class="small" data-t="set.legalTxt"></p></div>
         </div>

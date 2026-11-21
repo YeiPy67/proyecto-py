@@ -621,3 +621,55 @@ html.noanim .wel-step{transform:none!important;opacity:1!important}
 
 .wel input.wel-input{background:transparent!important;border:0!important;border-bottom:2px solid rgba(255,255,255,.35)!important;border-radius:0!important;color:#fff!important}
 @media (max-width:600px){.lessons{grid-template-columns:minmax(0,1fr)}.lesson{grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:14px}.lesson .sym-tile{grid-row:span 2}}
+
+/* ======================= v5: identidad visual "π" ======================= */
+/* Paleta: violeta π (principal) · verde crecimiento (sube) · coral (baja) · oro φ (premium) · neutros con tinte violeta */
+:root{
+  --bg:#f6f5fb; --surface:#ffffff; --sunk:#efedf7; --fg:#15122b; --muted:#5f5b7a; --faint:#8f8aac; --line:#e4e1f0;
+  --accent:#5b3df5; --accent-soft:#ece8ff; --up:#0f9b74; --up-soft:#dcf5ec; --down:#e5484d; --down-soft:#fde4e4;
+  --gold:#c98a12; --gold-soft:#fbf0d9; --warn:#b8690c; --warn-soft:#fdefdc;
+  --band:#14102e; --band-2:#1f1a45; --band-line:#2e2763; --band-muted:#a9a2d8; --band-fg:#f1eefe;
+  --pattern:url(fondo-claro.svg);
+  --math:"STIX Two Text","Cambria Math","Latin Modern Math",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e0b1f; --surface:#17132e; --sunk:#1f1a3d; --fg:#ecebf7; --muted:#a19cc4; --faint:#726d96; --line:#2b2550;
+  --accent:#9b87ff; --accent-soft:#2a2260; --up:#3ddca6; --up-soft:#0f3328; --down:#ff6b6e; --down-soft:#3c1820;
+  --gold:#f2c14e; --gold-soft:#3a2f14; --band:#0b0819; --band-2:#16112f; --band-line:#251f4d; --pattern:url(fondo-oscuro.svg)}}
+:root[data-theme="dark"]{
+  --bg:#0e0b1f; --surface:#17132e; --sunk:#1f1a3d; --fg:#ecebf7; --muted:#a19cc4; --faint:#726d96; --line:#2b2550;
+  --accent:#9b87ff; --accent-soft:#2a2260; --up:#3ddca6; --up-soft:#0f3328; --down:#ff6b6e; --down-soft:#3c1820;
+  --gold:#f2c14e; --gold-soft:#3a2f14; --band:#0b0819; --band-2:#16112f; --band-line:#251f4d; --pattern:url(fondo-oscuro.svg)}
+body{background-color:var(--bg);background-image:var(--pattern);background-size:600px 600px;background-attachment:fixed}
+/* Logo: π que sube como un gráfico */
+.logo{background:url(icon.svg) center/cover no-repeat!important;color:transparent!important;font-size:0!important;box-shadow:0 6px 16px rgba(60,30,180,.25)}
+.logo.sym{background:linear-gradient(135deg,#7b5cff,#2ec4a6)!important;color:#fff!important;font:600 2.6rem var(--math)!important}
+.wordmark{font-family:var(--display);font-weight:700;letter-spacing:-.01em}
+.wordmark em{font:italic 600 1.15em var(--math);letter-spacing:0;background:linear-gradient(120deg,#b7a6ff,#6ff0c8);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:2px}
+/* Números grandes: tipografía de títulos con cifras alineadas (más elegante que la monoespaciada) */
+.big-n,.px,.kpi .v,.price,.an-c b{font-family:var(--display)!important;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.big-n{font-weight:700}
+.px{font-weight:700}
+/* Símbolos con la tipografía matemática */
+.sym-tile,.story-sym{font-family:var(--math)!important;font-style:italic}
+.sym-tile{font-weight:500}
+/* Barra superior, lateral y bienvenida con el fondo de fórmulas */
+.side{background-image:linear-gradient(180deg,rgba(20,16,46,.92),rgba(20,16,46,.97)),url(fondo-oscuro.svg);background-size:auto,600px 600px}
+.wel::before{content:"";position:absolute;inset:0;background:url(fondo-oscuro.svg) center/600px 600px;opacity:.9;z-index:0;pointer-events:none}
+.wel-stage,.wel-foot,.wel-back{z-index:1}
+.wel-hi{font-family:var(--math);font-style:italic;font-weight:600;letter-spacing:-.01em}
+.story::before{content:"";position:absolute;inset:0;background:url(fondo-oscuro.svg) center/600px 600px;opacity:.7;pointer-events:none}
+.story>*{position:relative}
+.story-x{position:absolute}
+/* Tarjetas: superficie casi opaca sobre el fondo de fórmulas */
+.card{background:color-mix(in srgb,var(--surface) 96%,transparent)}
+.money-card{background:linear-gradient(135deg,var(--surface) 0%,var(--accent-soft) 160%)}
+.brand-link{text-decoration:none;color:var(--fg)}.brand-link .wordmark em{background:linear-gradient(120deg,#5b3df5,#0f9b74);-webkit-background-clip:text;background-clip:text}
+/* Tarjetas con fondo propio: más específicas que .card */
+.card.pr-hero{background:radial-gradient(120% 140% at 100% 0%,#3a2a0e 0%,transparent 55%),linear-gradient(135deg,#14102e,#241c52);color:#fff;border:0;position:relative;overflow:hidden}
+.card.pr-hero::after{content:"φ";position:absolute;right:-6px;bottom:-60px;font:italic 600 13rem/1 var(--math);color:rgba(242,193,78,.16);pointer-events:none}
+.card.pr-hero h1{color:#fff}.card.pr-hero p{color:#e8dcbc}
+.card.an-head{background:linear-gradient(160deg,#14102e,#241c52);color:var(--band-fg);border:0}
+.card.money-card{background:linear-gradient(135deg,var(--surface) 0%,var(--accent-soft) 160%)}
+.plan-c.hi{border:2px solid var(--gold);box-shadow:0 10px 30px rgba(201,138,18,.18)}
+.price{font-family:var(--display)}
