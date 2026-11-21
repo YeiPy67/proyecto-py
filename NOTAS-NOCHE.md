@@ -36,5 +36,6 @@ Guía de marca (nueva): https://yeipy67.github.io/proyecto-py/marca.html  — ta
 ---
 # Actualización (después de tus comentarios)
 - **Parpadeo del Inicio arreglado:** los precios en vivo ya no redibujan la pantalla; solo cambia el número.
-- **Colores nuevos: "cuaderno y pizarra".** Claro = cuaderno cuadriculado (tinta azul, bolígrafo verde/rojo, resaltador amarillo). Oscuro = pizarra con tiza. Bienvenida y lecciones en pizarra, con el "Hola" escrito a mano.
+- **Identidad v7: negro, blanco y un rojo** (reemplaza "cuaderno y pizarra"). El rojo solo marca lo que baja (▼), el logo (punto rojo en la π) y la sección activa. Lo que sube va en negro con ▲. Bienvenida y lecciones en negro puro; "Hola." y "Todo listo." con punto rojo. Guía en marca.html.
+- **Cambios de la ronda minimalista:** íconos de línea en vez de emojis; niveles x · x² · xⁿ; Cartera en tarjetas en el celular y en dos columnas en computador; Más, Aprende y el diccionario como listas; interruptores tipo iPhone; montos con puntos de miles en el simulador; anuncios "67" sin rayas; estado del mercado corto en el celular; Mis pasos sin cortar el texto.
 - **Inicio rediseñado en 5 rondas:** tu día en una frase (con resaltador) → tu dinero con la curva de 30 días → 4 accesos rápidos → "Lo importante hoy" (máx. 4 cosas) → dato del día o cifras según tu nivel → consejo. En computador va en dos columnas.

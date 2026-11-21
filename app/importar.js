@@ -72,7 +72,7 @@ const PyImport=(()=>{
   function open(mode){const m=$("impModal");m.hidden=false;show(mode||"menu")}
   function close(){stopVoice();$("impModal").hidden=true}
   function show(mode){source=mode;["menu","photo","voice","text","connect","review"].forEach(k=>$("imp-"+k).hidden=k!==mode);
-    if(mode==="voice"){$("impVoiceTxt").value="";$("impMic").textContent="🎙️ "+t("imp.listen");$("impNoVoice").hidden=!!(window.SpeechRecognition||window.webkitSpeechRecognition)}
+    if(mode==="voice"){$("impVoiceTxt").value="";$("impMic").innerHTML=ICON.mic+" "+t("imp.listen");$("impNoVoice").hidden=!!(window.SpeechRecognition||window.webkitSpeechRecognition)}
     if(mode==="text")$("impText").focus()}
   // Pantallazos
   async function loadTesseract(){if(window.Tesseract)return;await new Promise((ok,ko)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";s.onload=ok;s.onerror=ko;document.head.append(s)})}
@@ -89,7 +89,7 @@ const PyImport=(()=>{
       base+=fin;$("impVoiceTxt").value=(base+tmp).trim()};
     rec.onerror=()=>stopVoice();rec.onend=()=>{if(listening)stopVoice()};
     try{rec.start();listening=true;$("impMic").textContent="⏹ "+t("imp.stop");$("impMic").classList.add("rec")}catch(e){$("impNoVoice").hidden=false}}
-  function stopVoice(){listening=false;try{rec&&rec.stop()}catch(e){}const b=$("impMic");if(b){b.textContent="🎙️ "+t("imp.listen");b.classList.remove("rec")}}
+  function stopVoice(){listening=false;try{rec&&rec.stop()}catch(e){}const b=$("impMic");if(b){b.innerHTML=ICON.mic+" "+t("imp.listen");b.classList.remove("rec")}}
   // Revisión
   function review(text,mode,app){rows=PyParse.parse(text||"",mode,priceOf);if(app)rows.forEach(r=>{if(!r.acct)r.acct=app});
     $("impRaw").textContent=text.trim();show("review");drawRows()}

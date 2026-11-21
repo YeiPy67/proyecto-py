@@ -793,3 +793,266 @@ html.noanim .wel-check .ck,html.noanim .ck{stroke-dashoffset:0!important}
 .top .brand b{color:var(--fg)}
 .side .wordmark em{box-shadow:none}
 body::before{background:var(--bg)}
+
+/* ======================= v7: minimal — negro, blanco y rojo ======================= */
+/* Todo en negro y blanco; el rojo es la única nota de color: marca, lo importante y lo que baja. Lo que sube va en negro con ▲. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --sunk:#f4f4f4; --fg:#0a0a0a; --muted:#6b6b6b; --faint:#a3a3a3; --line:#e9e9e9;
+  --accent:#0a0a0a; --accent-soft:#f2f2f2; --red:#e4271b; --red-soft:#fdecea;
+  --up:#0a0a0a; --up-soft:#f0f0f0; --down:#e4271b; --down-soft:#fdecea;
+  --gold:#e4271b; --gold-soft:#fdecea; --hl:transparent; --warn:#e4271b; --warn-soft:#fdecea;
+  --band:#0a0a0a; --band-2:#161616; --band-line:#262626; --band-muted:#9a9a9a; --band-fg:#ffffff;
+  --p0:#0a0a0a; --p1:#e4271b; --p2:#8a8a8a; --p3:#c8c8c8; --p4:#ff8a80; --p5:#4a4a4a; --p6:#b31d13; --p7:#dedede;
+  --hand:var(--display); --pattern:none; --shadow:none; --r:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --surface:#0d0d0d; --sunk:#171717; --fg:#f5f5f5; --muted:#9a9a9a; --faint:#5e5e5e; --line:#232323;
+  --accent:#f5f5f5; --accent-soft:#1c1c1c; --red:#ff3b30; --red-soft:#2a0f0d;
+  --up:#f5f5f5; --up-soft:#1c1c1c; --down:#ff3b30; --down-soft:#2a0f0d; --gold:#ff3b30; --gold-soft:#2a0f0d;
+  --band:#000; --band-2:#121212; --band-line:#232323;
+  --p0:#f5f5f5; --p1:#ff3b30; --p2:#8a8a8a; --p3:#4a4a4a; --p4:#ff8a80; --p5:#c8c8c8; --p6:#b31d13; --p7:#2e2e2e}}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#0d0d0d; --sunk:#171717; --fg:#f5f5f5; --muted:#9a9a9a; --faint:#5e5e5e; --line:#232323;
+  --accent:#f5f5f5; --accent-soft:#1c1c1c; --red:#ff3b30; --red-soft:#2a0f0d;
+  --up:#f5f5f5; --up-soft:#1c1c1c; --down:#ff3b30; --down-soft:#2a0f0d; --gold:#ff3b30; --gold-soft:#2a0f0d;
+  --band:#000; --band-2:#121212; --band-line:#232323;
+  --p0:#f5f5f5; --p1:#ff3b30; --p2:#8a8a8a; --p3:#4a4a4a; --p4:#ff8a80; --p5:#c8c8c8; --p6:#b31d13; --p7:#2e2e2e}
+body{background:var(--bg)!important;background-image:none!important}
+.card{box-shadow:none;border:1px solid var(--line)}
+.chg::before{font-size:.7em;margin-right:3px;vertical-align:1px}
+.chg.up::before{content:"▲"}.chg.dn::before{content:"▼"}
+.chg.up{color:var(--fg);background:var(--sunk)}
+.btn.pri,.btn.pri:active{background:var(--fg)!important;border-color:var(--fg)!important;color:var(--bg)!important;box-shadow:none!important;transform:none}
+.btn.pri:active{transform:scale(.97)}
+.add-cta{background:var(--red);color:#fff;box-shadow:none}
+.add-cta:active{transform:scale(.97);box-shadow:none}
+.sidenav a.on{box-shadow:inset 2px 0 0 var(--red)}
+.sym-tile{background:var(--surface);color:var(--fg);border:1px solid var(--line);font-style:normal;box-shadow:none}
+.sym-tile.on,.sym-tile[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg);box-shadow:none;transform:none}
+.qa-ic{box-shadow:none;border:1px solid var(--line);color:var(--fg);font-style:normal;background:var(--surface)}
+.qa:first-child .qa-ic{background:var(--red);border-color:var(--red);color:#fff;box-shadow:none}
+.wordmark em{box-shadow:none!important;color:inherit}
+.wordmark em::after{content:".";color:var(--red);font-style:normal}
+.mark{background:none;color:var(--fg);font-weight:700}
+.mark.dn{color:var(--red)}
+.tip-card{border-left:2px solid var(--red)}
+.fact-card .lbl,.tip-card .lbl{font:600 .7rem/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#helloDate{font:500 .95rem var(--body);color:var(--muted)}
+.hand{font:700 1rem var(--display);color:var(--red)}
+.pill-pr{background:var(--red-soft);color:var(--red)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.seg button[aria-pressed="true"]{box-shadow:none;border:1px solid var(--line)}
+.logo{box-shadow:none}
+.logo.sym{background:var(--red)!important;color:#fff!important;font-style:normal!important}
+.ph67{background:repeating-linear-gradient(45deg,var(--sunk),var(--sunk) 10px,var(--bg) 10px,var(--bg) 20px);border:1px dashed var(--faint)}
+.side-ad .ph67{background:repeating-linear-gradient(45deg,#141414,#141414 10px,#0a0a0a 10px,#0a0a0a 20px);border-color:#2a2a2a}
+.side{background:#0a0a0a!important;background-image:none!important}
+.card.pr-hero,.card.an-head{background:#0a0a0a!important;border:1px solid #1f1f1f}
+.card.pr-hero::after{color:rgba(255,59,48,.22)}
+.plan-c.hi{border:2px solid var(--fg);box-shadow:none}
+.top{border-bottom:1px solid var(--line)}
+.start-card{border:1px dashed var(--faint)}
+.mk.open i{background:var(--red)}
+.ni .tg{color:var(--bg)!important}
+/* Bienvenida y lecciones: negro puro */
+.wel,.story{background:#000!important}
+.wel::before,.story::before{display:none}
+.wel-hi{font:800 clamp(4rem,16vw,7rem)/1 var(--display)!important;letter-spacing:-.05em;color:#fff;-webkit-text-fill-color:#fff;text-shadow:none}
+.wel-hi::after{content:".";color:#ff3b30;-webkit-text-fill-color:#ff3b30}
+.wel-sub,.wel-tap{color:#9a9a9a}
+.wel-opt,.wel-card{background:#0f0f0f;border-color:#262626;backdrop-filter:none}
+.wel-opt:hover,.wel-card:hover{background:#171717}
+.wel-opt.on,.wel-card.on{border-color:#ff3b30;background:#1a0a09}
+.wel-btn{background:#fff;color:#000;box-shadow:none}
+.wel-btn:active{transform:scale(.97);box-shadow:none}
+.wel-foot i{background:#333}.wel-foot i.on{background:#ff3b30}.wel-foot i.past{background:#777}
+.wel-syms .sym-tile{background:#0f0f0f;border-color:#262626;color:#fff}
+.wel-syms .sym-tile.on{background:#fff;color:#000}
+.wel-select{background:#0f0f0f;border-color:#262626}
+.story-btn{background:#fff;color:#000}
+.story-bars i.done,.story-bars i.now::after{background:#ff3b30}
+.cmp-bar.inv{background:#fff}.cmp-bar.keep{background:#555}.cmp-bar.neg{background:#ff3b30}
+.quiz-op.ok{background:#fff;color:#000;border-color:#fff}
+.quiz-msg.ok{color:#fff}
+.lesson{background:var(--surface)!important}
+.lesson.done .sym-tile{background:var(--fg);color:var(--bg)}
+/* Ronda 2: el rojo solo para lo que baja, el logo y la sección activa */
+.add-cta{background:#fff;color:#0a0a0a}
+.qa:first-child .qa-ic{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.tip-card{border-left:1px solid var(--line)}
+#topPremium{color:var(--fg)}
+.mark{padding:0}
+.imp-ic{border:0!important;background:var(--sunk)!important;border-radius:50%!important}
+.imp-ic.tick{color:var(--fg)}
+.imp-ic.tick.dn{color:var(--red)}
+.qa span:last-child{font-size:.78rem;font-weight:500;color:var(--muted)}
+.qa-ic{border-radius:50%;width:58px;height:58px}
+.hello h1{font-size:1.9rem;letter-spacing:-.03em}
+.day-line{font-weight:600;letter-spacing:-.02em}
+.imp-card h3,.hc h3{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:var(--body);font-weight:600}
+.hero-money .lbl{letter-spacing:.08em}
+.chg{border-radius:99px;padding:3px 9px}
+.sidenav a{color:#8a8a8a}.sidenav a.on{background:#161616;color:#fff}
+.imp-row{border-bottom-style:solid}
+/* Ronda 4: grises para series, etiquetas neutras, íconos de línea, niveles x · x² · xⁿ */
+:root{--p0:#0a0a0a;--p1:#6e6e6e;--p2:#a8a8a8;--p3:#3a3a3a;--p4:#cfcfcf;--p5:#8a8a8a;--p6:#525252;--p7:#e0e0e0}
+:root[data-theme="dark"]{--p0:#f5f5f5;--p1:#9a9a9a;--p2:#5e5e5e;--p3:#d0d0d0;--p4:#3a3a3a;--p5:#7a7a7a;--p6:#b5b5b5;--p7:#2a2a2a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--p0:#f5f5f5;--p1:#9a9a9a;--p2:#5e5e5e;--p3:#d0d0d0;--p4:#3a3a3a;--p5:#7a7a7a;--p6:#b5b5b5;--p7:#2a2a2a}}
+.ni .tg{background:var(--fg)!important;color:var(--bg)!important}
+.ico{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;flex:none}
+.imp-opt .ic .ico,.wel-card .ic .ico,.drop .ic .ico{width:28px;height:28px}
+.ico-wrap{display:inline-flex;align-items:center;gap:6px}
+.wel-card .ic{font:italic 500 1.9rem/1 var(--math);color:#fff;min-width:44px;text-align:center}
+.wel-card.on .ic{color:#ff3b30}
+.imp-opt .ic{color:var(--fg)}
+.drop{border:1px dashed var(--faint);background:var(--sunk)}
+.mic{background:var(--fg);color:var(--bg);display:inline-flex;align-items:center;gap:8px}
+.mic.rec{background:var(--red);color:#fff}
+/* Ronda 5: Cartera en tarjetas en el celular · listas de Explorar en una fila deslizable */
+@media (max-width:640px){
+  .t-buys{min-width:0!important}
+  .t-buys thead{display:none}
+  .t-buys tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"a now x" "w gain x" "u loc x";column-gap:10px;row-gap:2px;padding:14px 16px;border-bottom:1px solid var(--line)}
+  .t-buys tr:last-child{border-bottom:0}
+  .t-buys td{padding:0;border:0;text-align:left}
+  .t-buys td:nth-child(1){grid-area:a}
+  .t-buys td:nth-child(2){grid-area:w;font-size:.8rem;color:var(--muted)}
+  .t-buys td:nth-child(3){grid-area:u;font-size:.8rem;color:var(--muted)}
+  .t-buys td:nth-child(3)::after{content:" u."}
+  .t-buys td:nth-child(4){display:none}
+  .t-buys td:nth-child(5){grid-area:now;text-align:right;font-weight:600}
+  .t-buys td:nth-child(6){grid-area:gain;text-align:right;font-size:.8rem}
+  .t-buys td:nth-child(7){grid-area:loc;text-align:right;font-size:.8rem;color:var(--muted)}
+  .t-buys td:nth-child(8){grid-area:x;align-self:center}
+  .t-buys td[colspan]{grid-column:1/-1}
+  .t-buys td .note{display:none}
+  .profiles{flex-direction:column;align-items:stretch}
+  #profChips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 2px;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  #profChips .chip{flex:none}
+  .profiles .chips:last-child{justify-content:flex-start}
+}
+/* Ronda 10: interruptores tipo iOS */
+.check input[type=checkbox]{appearance:none;-webkit-appearance:none;width:44px;height:26px;border-radius:13px;background:var(--line);position:relative;cursor:pointer;transition:background-color .25s var(--ease);margin:0;flex:none}
+.check input[type=checkbox]::before{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .3s var(--spring)}
+.check input[type=checkbox]:checked{background:var(--fg)}
+.check input[type=checkbox]:checked::before{transform:translateX(18px)}
+.check{align-items:center;gap:12px}
+/* Premium minimal */
+.card.pr-hero{padding:36px 26px}
+.card.pr-hero h1{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.03em}
+.feat{list-style:none;padding:0}
+.feat li{padding-left:22px;position:relative}
+.feat li::before{content:"✓";position:absolute;left:0;font-weight:700}
+.price{letter-spacing:-.04em}
+.card.pr-hero::after{color:rgba(255,255,255,.06)!important}
+.card.pr-hero .pill-pr{background:transparent;color:#fff;border:1px solid #3a3a3a}
+/* Cartera en escritorio: dos columnas */
+@media (min-width:1100px){
+  #v-portfolio{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);column-gap:22px;align-items:start}
+  #v-portfolio>.sh,#v-portfolio>.port-top,#v-portfolio>.add-row{grid-column:1/-1}
+  #v-portfolio>.card:nth-of-type(n){grid-column:auto}
+}
+@media (min-width:1100px){
+  #v-portfolio>.card:has(.t-buys),#v-portfolio>.grid2,#v-portfolio>.ad-slot{grid-column:1/-1}
+  #v-portfolio>.card:has(#cashList){grid-column:1}
+  #v-portfolio>.card:has(#divBody){grid-column:2}
+}
+/* Ronda 16: Inicio en computador sin huecos; el consejo baja a la columna izquierda */
+.side .wordmark em{box-shadow:none}
+@media (min-width:1100px){
+  .home-body{grid-template-areas:"day day" "money imp" "quick imp" "quick side";grid-auto-flow:row dense}
+  .home-body>.tip-card{grid-column:1}
+  .a-quick{margin-bottom:0}
+  .side{border-right:1px solid #161616}
+}
+/* Ronda 17: anuncio sobrio y tira de datos en una fila */
+.ad-slot,.side-ad{background:transparent!important;background-image:none!important;border:1px dashed var(--line)!important}
+.side .side-ad{border-color:#2a2a2a!important}
+.ad-slot b,.side-ad b{color:var(--fg)}
+.side .side-ad b{color:#fff}
+.kpi-strip{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:14px}
+.kpi-strip .ks b{font-size:1.05rem;white-space:nowrap}
+.kpi-strip .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph67,.side-ad .ph67,.inter .ph67{background:transparent!important;border:1px dashed var(--line)!important}
+.side-ad .ph67,.inter .ph67{border-color:#2a2a2a!important}
+.inter .ph67{background:#0a0a0a!important}
+.ad-slot,.side-ad{border:0!important}
+/* Ronda 18: barrido final de colores viejos (amarillo, azul, verde) */
+.mk.open i{background:var(--red)!important}
+.tk .u,.an-c b.up{color:inherit!important}.tk .d,.an-c b.dn{color:#ff3b30!important}
+.wel-opt.on,.wel-card.on{border-color:#fff!important;background:rgba(255,255,255,.08)!important}
+.wel-input:focus{border-color:#fff!important}
+.wel-syms .sym-tile.on{background:#fff!important;color:#000!important;box-shadow:none!important;border-color:#fff!important}
+.wel-btn{background:#fff!important;color:#000!important;box-shadow:none!important}
+.wel-btn:active{transform:scale(.97)!important}
+.cmp-bar.inv{background:#fff!important}
+.quiz-op.ok{background:#fff!important;border-color:#fff!important;color:#000!important}
+.quiz-op.bad{background:#ff3b30!important;border-color:#ff3b30!important;color:#fff!important}
+.lesson.done .sym-tile{background:var(--fg)!important;color:var(--bg)!important}
+.logo.sym{background:#0a0a0a!important;color:#fff!important}
+.sym-tile.on,.sym-tile[aria-pressed="true"]{background:var(--fg)!important;color:var(--bg)!important;border-color:var(--fg)!important;box-shadow:none!important;transform:none}
+.card.pr-hero,.card.an-head{background:#0a0a0a!important;color:#fff}
+:root[data-theme="dark"] .card.an-head,:root[data-theme="dark"] .card.pr-hero{background:#0d0d0d!important;border:1px solid var(--line)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .card.an-head,:root:not([data-theme="light"]) .card.pr-hero{background:#0d0d0d!important;border:1px solid var(--line)}}
+.inter-wrap,.inter-bg{background:rgba(0,0,0,.88)!important}
+.aurora{display:none!important}
+.overlay.dark{background:rgba(0,0,0,.9)!important;backdrop-filter:blur(6px)}
+/* Ronda 21: el rojo solo donde significa algo */
+.start-card .hand{color:var(--fg);font:700 1.05rem var(--display)}
+.pill-pr{background:var(--fg)!important;color:var(--bg)!important}
+.card.pr-hero .pill-pr{background:#fff!important;color:#000!important;border:0}
+.tag.soft{background:transparent!important;color:var(--muted)!important;border:1px dashed var(--line)}
+.tag.w{background:var(--red)!important;color:#fff!important}
+@media (max-width:640px){
+  .top .mk{max-width:none;flex:1 1 auto;min-width:0}
+  #mkTxt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+}
+/* Ronda 25: Más como lista; Mis pasos sin cortar el texto */
+.more-grid{display:block!important;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.more-grid .mg{display:flex!important;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--fg);text-decoration:none;min-height:0}
+.more-grid .mg:last-child{border-bottom:0}
+.more-grid .mg .ic{width:36px;height:36px;border-radius:50%;background:var(--sunk);border:0;display:grid;place-items:center;font:italic 500 1.15rem var(--math);flex:none}
+.more-grid .mg b{flex:1;font-weight:600}
+.more-grid .mg .chev{color:var(--faint);font-size:1.3rem}
+.more-grid .mg:active{background:var(--sunk)}
+@media (hover:hover){.more-grid .mg:hover{background:var(--sunk)}}
+#steps li{align-items:flex-start}
+#steps .tx{resize:none;overflow:hidden;white-space:normal;line-height:1.35;padding-top:2px;font:inherit;font-weight:500;background:transparent;border:0;color:inherit;width:100%;min-width:0;flex:1}
+#steps li input[type=checkbox]{margin-top:2px}
+@media (max-width:640px){#steps .ops .ob{width:26px;height:26px;padding:0}}
+#steps li input[type=checkbox]{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--faint);display:grid;place-items:center;flex:none;cursor:pointer;transition:background-color .2s,border-color .2s}
+#steps li input[type=checkbox]:checked{background:var(--fg);border-color:var(--fg)}
+#steps li input[type=checkbox]:checked::after{content:"";width:6px;height:11px;border:solid var(--bg);border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg)}
+#steps li.done .tx{text-decoration:line-through;color:var(--muted)}
+/* Ronda 27: pestaña activa = punto rojo que se desliza; etiquetas de noticias livianas */
+.tabs .ind{background:transparent!important}
+.tabs .ind::after{content:"";position:absolute;left:50%;top:-6px;width:18px;height:3px;margin-left:-9px;border-radius:0 0 3px 3px;background:var(--red)}
+.tabs a.on{color:var(--fg)!important;font-weight:600}
+.tabs a{color:var(--faint)}
+.ni .tg{background:transparent!important;color:var(--fg)!important;border:1px solid var(--line);font-weight:600}
+.wel-dot::after{content:".";color:#ff3b30}
+.wel h2.wel-dot{font-size:2rem;letter-spacing:-.03em}
+/* Ronda 30: Aprende compacto; diccionario como una sola lista */
+.tabs a .ic{font-family:var(--math);font-style:italic}
+.lesson{grid-template-columns:auto minmax(0,1fr)!important;align-items:center;column-gap:14px;row-gap:2px!important}
+.lesson .sym-tile{grid-row:span 2;width:48px;height:48px;border-radius:50%;background:var(--sunk);border:0}
+.lesson b{font-size:1rem}
+#learnList .learn{display:block;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+#learnList .learn-i{border:0!important;border-radius:0!important;border-bottom:1px solid var(--line)!important;margin:0;background:transparent!important;box-shadow:none!important}
+#learnList .learn-i:last-child{border-bottom:0!important}
+#learnList .learn-i summary{list-style:none;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+#learnList .learn-i summary::-webkit-details-marker{display:none}
+#learnList .learn-i summary::after{content:"+";font:300 1.4rem/1 var(--body);color:var(--muted);transition:transform .3s var(--spring)}
+#learnList .learn-i[open] summary::after{transform:rotate(45deg)}
+@media (min-width:1100px){
+  #learnList{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:start}
+  .lessons{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media (max-width:640px){
+  .lessons{gap:0!important;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .lessons .lesson{border:0!important;border-radius:0!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important;padding:14px 16px}
+  .lessons .lesson:last-child{border-bottom:0!important}
+  .lesson .sym-tile{width:42px;height:42px}
+}
+.lesson.done b{color:var(--muted)}
+.lesson.done .sym-tile{background:var(--fg)!important;color:var(--bg)!important}

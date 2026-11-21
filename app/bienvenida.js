@@ -1,7 +1,7 @@
 "use strict";
 /* Proyecto Py — bienvenida tipo "primer encendido", niveles de usuario y lecciones estilo historias. */
 const SYMBOLS=["∑","π","∞","√","∫","Δ","φ","λ","≈","±","∂","θ"];
-const LEVELS=[["new","🌱","lvl.new","lvl.newSub"],["mid","🧭","lvl.mid","lvl.midSub"],["pro","🚀","lvl.pro","lvl.proSub"]];
+const LEVELS=[["new","x","lvl.new","lvl.newSub"],["mid","x²","lvl.mid","lvl.midSub"],["pro","xⁿ","lvl.pro","lvl.proSub"]];
 const level=()=>store.get("nivel","mid");
 const L=(arr)=>arr[LCODES.indexOf(LANG)]||arr[1]||arr[0];
 const lessonsDone=()=>store.get("lecciones",{});
@@ -40,16 +40,16 @@ function welcome(done,startAt=0){
     if(k==="next"){if((lv||"mid")==="new"){s.append(el("span",{class:"logo xl sym"},"∞"),el("h2",{},t("wel.learn")),el("p",{class:"wel-sub"},t("wel.learnSub")));
         const a=btn(t("wel.startLearn")),b=btn(t("wel.later"),"wel-link");a.onclick=()=>{finish("learn")};b.onclick=next;s.append(a,b)}
       else{s.append(el("h2",{},t("onb.how")));const box=el("div",{class:"wel-grid"});
-        [["photo","📸","imp.photo"],["voice","🎙️","imp.voice"],["text","⌨️","imp.text"]].forEach(([m,ic,l])=>{const c=el("button",{class:"wel-card sm",type:"button"});c.append(el("span",{class:"ic"},ic),el("b",{},t(l)));c.onclick=()=>finish("imp:"+m);box.append(c)});
+        [["photo","camera","imp.photo"],["voice","mic","imp.voice"],["text","keys","imp.text"]].forEach(([m,ic,l])=>{const c=el("button",{class:"wel-card sm",type:"button"});const ie=el("span",{class:"ic"});ie.innerHTML=ICON[ic];c.append(ie,el("b",{},t(l)));c.onclick=()=>finish("imp:"+m);box.append(c)});
         const sk=btn(t("imp.skip"),"wel-link");sk.onclick=next;s.append(box,sk)}}
     if(k==="ready"){const ck=sv("svg",{viewBox:"0 0 80 80",class:"wel-check"});ck.append(sv("circle",{cx:40,cy:40,r:36,fill:"none",stroke:"rgba(255,255,255,.25)","stroke-width":"4"}),sv("path",{d:"M24 41l11 11 22-24",fill:"none",stroke:"#fff","stroke-width":"6","stroke-linecap":"round","stroke-linejoin":"round",class:"ck"}));
-      s.append(ck,el("h2",{},prof.name?t("wel.readyName",{n:prof.name}):t("wel.ready")));const b=btn(t("wel.enter"));b.onclick=()=>finish("");s.append(b)}}
+      s.append(ck,el("h2",{class:"wel-dot"},prof.name?t("wel.readyName",{n:prof.name}):t("wel.ready")));const b=btn(t("wel.enter"));b.onclick=()=>finish("");s.append(b)}}
   function finish(action){store.set("onboarded",true);if(!store.get("nivel"))store.set("nivel","mid");w.classList.add("bye");setTimeout(()=>w.remove(),700);
     done(action)}
   go(startAt)}
 
 /* ---------- Lecciones estilo historias ---------- */
-function openLesson(id,k0=0){const les=LECCIONES.find(x=>x.id===id);if(!les)return;let k=k0;
+function openLesson(id,k0=0){const les=LECCIONES.find(x=>x.id===id);if(!les)return;let k=Math.max(0,Math.min(+k0||0,les.slides.length-1));
   const o=el("div",{class:"story",role:"dialog","aria-modal":"true"}),bars=el("div",{class:"story-bars"}),x=el("button",{class:"story-x",type:"button","aria-label":t("les.close")},"✕"),body=el("div",{class:"story-body"}),nav=el("div",{class:"story-nav"});
   les.slides.forEach(()=>bars.append(el("i")));o.append(bars,x,body,nav);document.body.append(o);requestAnimationFrame(()=>o.classList.add("open"));
   const close=()=>{o.classList.remove("open");setTimeout(()=>o.remove(),400);removeEventListener("keydown",kb);if(VIEW==="learn"||VIEW==="home")render()};
@@ -104,6 +104,6 @@ function pathCard(compact){const d=lessonsDone(),n=LECCIONES.filter(x=>d[x.id]).
   if(nx){const r=el("button",{class:"next-les",type:"button"});const st=el("span",{class:"stack0"});st.append(el("b",{},L(nx.title)),el("span",{class:"note"},t("les.min",{n:nx.min})));r.append(el("span",{class:"sym-tile"},nx.sym),st,el("span",{class:"btn pri sm"},t(n?"home.continue":"wel.startLearn")));r.onclick=()=>openLesson(nx.id);c.append(r)}
   else c.append(el("p",{class:"small muted"},t("home.pathAll")));
   if(compact&&!nx)return null;return c}
-function marketSentence(){const v=D.precios.VOO.cambio,x=pctf(v);return t(v>1?"mk.up":v<-1?"mk.down":"mk.flat",{x})}
-function tipCard(){const c=homeCard("tip-card");c.append(el("span",{class:"lbl"},"💡 "+t("home.tip")),el("p",{},L(TIPS[dayIdx(TIPS.length)])));return c}
+function marketSentence(){const v=D.precios.VOO.cambio,x=fix(Math.abs(v),1)+" %";return t(v>1?"mk.up":v<-1?"mk.down":"mk.flat",{x})}
+function tipCard(){const c=homeCard("tip-card");c.append(el("span",{class:"lbl"},t("home.tip")),el("p",{},L(TIPS[dayIdx(TIPS.length)])));return c}
 function factCard(){const f=LEARN[dayIdx(LEARN.length)],c=homeCard("fact-card");c.append(el("span",{class:"lbl"},t("home.fact")),el("b",{},L(f.t)),el("p",{class:"small muted"},L(f.d)));return c}

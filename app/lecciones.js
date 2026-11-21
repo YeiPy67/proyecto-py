@@ -107,6 +107,7 @@ window.TXT3={
 "home.tip":["Consejo","Tip","Dica","Astuce","Tipp"],
 "home.mkSimple":["El mercado hoy","The market today","O mercado hoje","Le marché aujourd’hui","Der Markt heute"],
 "mk.up":["Hoy el mercado subió {x}. Fue un buen día.","The market rose {x} today. A good day.","Hoje o mercado subiu {x}. Foi um bom dia.","Le marché a monté de {x} aujourd’hui. Bonne journée.","Der Markt stieg heute um {x}. Ein guter Tag."],
+"mk.closedS":["Cerrado · {t}","Closed · {t}","Fechado · {t}","Fermé · {t}","Geschlossen · {t}"],
 "mk.down":["Hoy el mercado bajó {x}. Fue un día rojo: pasa seguido y es normal.","The market fell {x} today. A red day: it happens often and it’s normal.","Hoje o mercado caiu {x}. Foi um dia vermelho: acontece e é normal.","Le marché a baissé de {x} aujourd’hui. Journée rouge : c’est fréquent et normal.","Der Markt fiel heute um {x}. Ein roter Tag: kommt oft vor und ist normal."],
 "mk.flat":["Hoy el mercado estuvo tranquilo ({x}).","The market was calm today ({x}).","Hoje o mercado esteve tranquilo ({x}).","Le marché était calme aujourd’hui ({x}).","Der Markt war heute ruhig ({x})."],
 "home.firstInv":["Cuando hagas tu primera inversión, anótala aquí y verás cómo crece.","When you make your first investment, log it here and watch it grow.","Quando fizer seu primeiro investimento, anote aqui e veja crescer.","Quand vous ferez votre premier placement, notez-le ici et regardez-le grandir.","Erfassen Sie hier Ihre erste Anlage und sehen Sie sie wachsen."],
