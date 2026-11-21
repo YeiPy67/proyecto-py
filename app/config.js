@@ -4,5 +4,6 @@
 window.PY_CONFIG = {
   supabaseUrl: "https://gijkojbqenhwaqzsnhzo.supabase.co",
   supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdpamtvamJxZW5od2FxenNuaHpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUyMzA1NjQsImV4cCI6MjExMDgwNjU2NH0.ovjFm3z-fmULsbqFIkUCBSAfQ7biZP6Usl_SuiXF380",
+  googleLogin: false,
   finnhubKey: ""
 };

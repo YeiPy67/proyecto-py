@@ -32,7 +32,7 @@ const PyCuenta=(()=>{
       send.onclick=async()=>{if(!em.value.includes("@"))return;send.disabled=true;const {error}=await sb.auth.signInWithOtp({email:em.value.trim(),options:{emailRedirectTo:location.origin+location.pathname}});
         msg.textContent=error?t("acc.err",{m:error.message}):t("acc.sent");send.disabled=false};
       const g=el("button",{class:"btn",type:"button"},"G  "+t("acc.google"));g.onclick=()=>sb.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});
-      const f=el("div",{class:"stack"});f.append(em,send,el("div",{class:"note center"},t("acc.or")),g,msg);c.append(f);return}
+      const f=el("div",{class:"stack"});f.append(em,send);if(CFG.googleLogin)f.append(el("div",{class:"note center"},t("acc.or")),g);f.append(msg);c.append(f);return}
     const who=el("div",{class:"row"});who.append(el("span",{class:"big-av"},prof.avatar||"🦊"),el("span",{class:"small"},t("acc.signedAs",{e:user.email||""})));
     const st=el("p",{class:"note"},lastSync?t("acc.synced",{t:new Date(lastSync).toLocaleString(loc(),{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}):"");
     const r2=el("div",{class:"row"}),sy=el("button",{class:"btn",type:"button"},"⟳ "+t("acc.sync")),out=el("button",{class:"btn danger",type:"button"},t("acc.out"));
