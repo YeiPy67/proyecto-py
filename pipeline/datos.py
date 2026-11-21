@@ -73,27 +73,36 @@ def precios():
 
 
 def noticias(generado):
-    """Pregunta despacio (GDELT corta si se le pregunta seguido) y conserva lo anterior si algo falla."""
+    """Pregunta despacio y con tope de tiempo; guarda después de cada tema; empieza por los más atrasados."""
     fuente = PROV_NOTICIAS[CONFIG["noticias"]]
     pausa = CONFIG.get("gdelt_pausa_segundos", 30) if CONFIG["noticias"] == "gdelt" else 1
+    limite = time.time() + CONFIG.get("noticias_max_minutos", 15) * 60
     ruta = SALIDA / "noticias.json"
     try:
-        previo = json.loads(ruta.read_text(encoding="utf-8")).get("temas", {})
+        previo = json.loads(ruta.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         previo = {}
-    out = {"generado": generado, "fuente": CONFIG["noticias"], "temas": dict(previo)}
-    for clave, q in CONSULTAS.items():
-        for intento in range(3):
+    out = {"generado": generado, "fuente": CONFIG["noticias"], "temas": dict(previo.get("temas", {})),
+           "act": dict(previo.get("act", {}))}
+    orden = sorted(CONSULTAS, key=lambda k: (bool(out["temas"].get(k)), out["act"].get(k, "")))
+    hechas = 0
+    for clave in orden:
+        if time.time() > limite:
+            print("tope de tiempo: sigue en la próxima ronda", flush=True)
+            break
+        for intento in range(2):
             time.sleep(pausa * (intento + 1))
             try:
-                nuevas = filtrar(clave, fuente(q, clave))
-                if nuevas or clave not in previo:
+                nuevas = filtrar(clave, fuente(CONSULTAS[clave], clave))
+                if nuevas or clave not in out["temas"]:
                     out["temas"][clave] = nuevas
+                out["act"][clave] = generado
+                hechas += 1
                 break
             except Exception as e:
                 print("noticias", clave, "intento", intento + 1, e, flush=True)
-    ruta.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    print(sum(len(v) for v in out["temas"].values()), "noticias en", len(out["temas"]), "temas", flush=True)
+        ruta.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(hechas, "temas actualizados;", sum(len(v) for v in out["temas"].values()), "noticias en total", flush=True)
 
 
 def main():

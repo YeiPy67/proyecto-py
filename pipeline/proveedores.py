@@ -79,7 +79,7 @@ def noticias_gdelt(q, clave=None):
     """Gratis y de uso libre. Limita a una consulta cada 5 s (mejor ir más despacio)."""
     url = ("https://api.gdeltproject.org/api/v2/doc/doc?query=" + urllib.parse.quote(q)
            + "&mode=artlist&maxrecords=75&format=json&timespan=3d&sort=datedesc")
-    texto = pedir(url, espera=30).decode("utf-8", "replace")
+    texto = pedir(url, intentos=1).decode("utf-8", "replace")
     if not texto.lstrip().startswith("{"):
         raise RuntimeError(texto[:80])
     vistos, out = set(), []

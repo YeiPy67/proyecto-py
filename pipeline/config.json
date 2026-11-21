@@ -3,6 +3,7 @@
   "precios": "yahoo",
   "noticias": "gdelt",
   "gdelt_pausa_segundos": 30,
+  "noticias_max_minutos": 15,
   "noticias_api_clave_env": "NOTICIAS_API_KEY",
   "ia_resumenes": "manual",
   "ia_importar": "local"
