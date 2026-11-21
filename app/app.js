@@ -131,6 +131,13 @@ const ICON={
  bulb:'<svg viewBox="0 0 24 24" class="ico"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/></svg>',
  bell:'<svg viewBox="0 0 24 24" class="ico"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg>'};
 const icoEl=(n,txt)=>{const s=el("span",{class:"ico-wrap"});s.innerHTML=ICON[n];if(txt)s.append(document.createTextNode(" "+txt));return s};
+/* Ojo para ocultar montos (para abrir la app en público) */
+const EYE_ON='<svg viewBox="0 0 24 24" class="ico"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+ EYE_OFF='<svg viewBox="0 0 24 24" class="ico"><path d="M3 3l18 18M10.6 5.1A9.7 9.7 0 0112 5c6.4 0 10 7 10 7a17 17 0 01-3.2 4M6.6 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7a9.5 9.5 0 005.4-1.6M9.9 9.9a3 3 0 004.2 4.2"/></svg>';
+function eyeBtn(){const b=el("button",{class:"eye",type:"button"});const set=()=>{const h=document.documentElement.classList.contains("hide-money");b.innerHTML=h?EYE_OFF:EYE_ON;b.setAttribute("aria-label",t(h?"money.show":"money.hide"));b.title=b.getAttribute("aria-label")};
+  b.onclick=e=>{e.stopPropagation();setHide(!document.documentElement.classList.contains("hide-money"))};b.addEventListener("sync",set);set();return b}
+document.documentElement.classList.toggle("hide-money",!!store.get("hide",false));
+function setHide(h){document.documentElement.classList.toggle("hide-money",h);store.set("hide",h);document.querySelectorAll(".eye").forEach(x=>x.dispatchEvent(new Event("sync")));const c=document.getElementById("setHide");if(c)c.checked=h}
 /* ---------- Ventana emergente (hoja) y animaciones ---------- */
 const RM=matchMedia("(prefers-reduced-motion: reduce)");
 function sheet(build){const w=el("div",{class:"sheet-wrap"}),s=el("div",{class:"sheet",role:"dialog","aria-modal":"true"});
@@ -232,7 +239,7 @@ function rHome(){const lv=level(),P=D.precios,tt=totals();
   day.classList.add("a-day");add(day);
   // 2) Tu dinero, con su curva de 30 días
   if(hasAny()){const c=el("section",{class:"card hero-money"}),top=el("div",{class:"hm-top"}),l=el("div",{class:"stack0"}),bn=el("div",{class:"big-n",id:"homeTotal"});
-    l.append(el("span",{class:"lbl"},t("home.money")),bn);countUp(bn,tt.totalUSD*fxNow(),q=>money(q),"home");
+    {const lr=el("span",{class:"lbl lbl-eye"});lr.append(document.createTextNode(t("home.money")),eyeBtn());l.append(lr,bn)}countUp(bn,tt.totalUSD*fxNow(),q=>money(q),"home");
     const dc=tt.dayUSD,pc=tt.investUSD?dc/(tt.investUSD-dc)*100:0,chip=el("span",{class:"chg "+(dc>=0?"up":"dn"),id:"homeChg"},(dc>=0?"+":"−")+money(Math.abs(dc)*fxNow())+" · "+pctf(pc));
     top.append(l,chip);c.append(top);
     const hist=portfolioHistory();if(hist.length>3){const box=el("div",{class:"chartbox hm-chart",id:"hmBox"}),svgE=sv("svg",{class:"big",id:"hmChart"}),tip=el("div",{class:"tip",id:"hmTip",hidden:""});box.append(svgE,tip);c.append(box);
@@ -365,7 +372,7 @@ function rPortfolio(){
     tr.append(a,el("td",{},h.acct||"—"),el("td",{class:"r num"},h.q.toLocaleString(loc(),{maximumFractionDigits:6})),el("td",{class:"r num"},h.px?usd(h.px):"—"),el("td",{class:"r num"},usd(val)),gEl,lEl,lt);tb.append(tr)});
   $("investTot").textContent=holdings.length?usd(tt.investUSD)+" · "+money(tt.investUSD*fxNow()):"";
   // Resumen
-  const ps=$("portSummary");ps.innerHTML="";const pbn=el("div",{class:"big-n"});ps.append(el("span",{class:"lbl"},t("port.total")),pbn);countUp(pbn,tt.totalUSD*fxNow(),v=>money(v),"port");
+  const ps=$("portSummary");ps.innerHTML="";const pbn=el("div",{class:"big-n"});{const lr=el("span",{class:"lbl lbl-eye"});lr.append(document.createTextNode(t("port.total")),eyeBtn());ps.append(lr,pbn)}countUp(pbn,tt.totalUSD*fxNow(),v=>money(v),"port");
   if(hasAny()){ps.append(el("div",{class:"small muted"},`${t("port.invest")} ${money(tt.investUSD*fxNow())} · ${t("port.cashL")} ${money(tt.cashUSD*fxNow())}`));
     if(cost){const g=costed-cost;ps.append(el("div",{class:g>=0?"up":"dn"},t(g>=0?"port.youGain":"port.youLose",{x:usd(Math.abs(g))+" ("+pctf(g/cost*100)+")"})))}
     const chips=el("div",{class:"acct-chips"});Object.entries(tt.byAcct).sort((a,b)=>b[1]-a[1]).forEach(([k,v])=>{const c=el("span",{class:"acct"});c.append(el("b",{},k),document.createTextNode(" "+fix(v/tt.totalUSD*100,0)+" %"));chips.append(c)});ps.append(el("span",{class:"lbl"},t("port.byAcct")),chips)}
@@ -563,7 +570,7 @@ async function boot(){
   CURS.splice(0,CURS.length,...[["USD","US$"],["EUR","€"],["GBP","£"],["MXN","MX$"],["BRL","R$"],["COP","COL$"],["ARS","AR$"],["CLP","CL$"],["PEN","S/"],["CAD","CA$"],["JPY","¥"]].filter(c=>c[0]==="USD"||D.fx[c[0]]));
   // Vista previa para capturas: ?shot=1 salta la bienvenida y el anuncio y usa compras de ejemplo (no guarda nada).
   const Q=new URLSearchParams(location.search),SHOT=Q.has("shot");if(SHOT)document.documentElement.classList.add("noanim");
-  if(SHOT){if(Q.get("mode"))mode=Q.get("mode");if(Q.get("nivel"))store.set("nivel",Q.get("nivel"));if(Q.get("lang"))LANG=Q.get("lang");if(Q.get("cur"))CUR=Q.get("cur");premium=Q.has("premium");applyI18n();buildNav();
+  if(SHOT){if(Q.get("mode"))mode=Q.get("mode");document.documentElement.classList.toggle("hide-money",Q.has("hide"));if(Q.get("nivel"))store.set("nivel",Q.get("nivel"));if(Q.get("lang"))LANG=Q.get("lang");if(Q.get("cur"))CUR=Q.get("cur");premium=Q.has("premium");applyI18n();buildNav();
     if(!Q.has("empty")&&!holdings.length){holdings=[{id:"a",s:"VOO",q:.0944,px:635.54,d:"2026-11-20",acct:"Hapi",fx:fxAt("2026-11-20")},{id:"b",s:"ANT",q:.39,px:88.91,d:"2026-11-20",acct:"Hapi",fx:fxAt("2026-11-20")},{id:"c",s:"NVDA",q:.5,px:null,d:"2026-11-20",acct:"Hapi",fx:fxAt("2026-11-20")},{id:"d",s:"GOOGL",q:.13,px:190,d:"2025-11-20",acct:"eToro",fx:fxAt("2025-11-20")},{id:"e",s:"BTC-USD",q:.001,px:61000,d:"2026-10-01",acct:"Binance",fx:fxAt("2026-10-01")}];cash=[{id:"f",name:"CDT",amt:240000,cur:"COP",rate:13,acct:"Lulo"}]}}
   header();
   PyImport.init();PyCuenta.init();PyVivo.init();route();
@@ -576,3 +583,9 @@ async function boot(){
   if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
 boot();
+/* Atajos de teclado en computador: N = anotar compra, O = ocultar montos, Esc lo maneja cada ventana */
+document.addEventListener("keydown",e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;const a=document.activeElement;if(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName)||a?.isContentEditable)return;
+  if(document.querySelector(".sheet-wrap,.wel,.story")||!$("impModal").hidden)return;const k=e.key.toLowerCase();
+  if(k==="n"){e.preventDefault();PyImport.open("menu")}else if(k==="o"){e.preventDefault();setHide(!document.documentElement.classList.contains("hide-money"))}});
+document.querySelector(".add-cta")?.setAttribute("aria-keyshortcuts","N");
+{const c=$("setHide");if(c){c.checked=document.documentElement.classList.contains("hide-money");c.addEventListener("change",()=>setHide(c.checked))}}

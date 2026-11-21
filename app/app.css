@@ -1076,3 +1076,22 @@ details>summary{list-style:none;display:flex;justify-content:space-between;align
 details>summary::-webkit-details-marker{display:none}
 details>summary::after{content:"+";font:300 1.4rem/1 var(--body);color:var(--muted);transition:transform .3s var(--spring);flex:none}
 details[open]>summary::after{transform:rotate(45deg)}
+/* Ronda 42: ocultar montos */
+.lbl-eye{display:flex;align-items:center;gap:8px}
+.eye{border:0;background:transparent;color:var(--muted);padding:2px;margin:-4px 0;border-radius:50%;cursor:pointer;display:inline-grid;place-items:center;width:26px;height:26px}
+.eye .ico{width:16px;height:16px}
+.eye:hover{color:var(--fg);background:var(--sunk)}
+.hide-money .big-n,.hide-money .hero-money .chg,.hide-money .hero-money svg text,.hide-money #portSummary>*:not(.lbl-eye):not(.big-n):not(.lbl),.hide-money .t-buys tbody td:nth-child(n+3):not(:last-child),.hide-money #cashList .num,.hide-money #cashList b+span,.hide-money .imp-row .note,.hide-money .t-buys~* .num{filter:blur(9px);user-select:none;transition:filter .3s}
+.big-n,.hero-money .chg{transition:filter .3s}
+@media (hover:hover) and (min-width:900px){
+  .add-cta{position:relative}
+  .add-cta::after{content:"N";position:absolute;right:12px;top:50%;transform:translateY(-50%);font:600 .7rem var(--mono);color:#8a8a8a;border:1px solid #d0d0d0;border-radius:5px;padding:1px 6px;opacity:0;transition:opacity .2s}
+  .add-cta:hover::after{opacity:1}
+  .eye::after{content:"O";font:600 .6rem var(--mono);margin-left:2px;opacity:0;transition:opacity .2s}
+  .eye{width:auto;padding:2px 4px;border-radius:8px}
+  .eye:hover::after{opacity:1}
+}
+.eye{display:inline-flex!important;align-items:center;justify-content:center}
+.kbd{font:600 .68rem var(--mono);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--muted);margin-left:auto}
+@media (hover:none){.kbd{display:none}}
+#v-settings .card{align-self:start}
