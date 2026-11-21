@@ -8,6 +8,10 @@ App web instalable para seguir tu plata: mercado, listas, cartera, simulador, no
 - Anuncios, pagos y enlaces de afiliado son marcadores (67).
 - Vista previa para capturas: `?shot=1&lang=es&cur=COP#market` (salta la bienvenida y usa compras de ejemplo).
 
+- `app/config.js`: claves públicas opcionales (Supabase para cuentas, Finnhub para acciones en vivo).
+- `supabase/esquema.sql`: tabla para guardar los datos de cada cuenta.
+- `.github/workflows/datos-y-publicar.yml`: precios cada 30 min, noticias cada 3 h y publicación en GitHub Pages.
+
 Para probar: `cd app && python3 -m http.server 8067`.
 
 No es consejo de inversión.

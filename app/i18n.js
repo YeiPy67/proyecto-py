@@ -114,7 +114,7 @@ window.TXT = {
 "port.youGain":["Ganas {x}","You’re up {x}","Você ganha {x}","Vous gagnez {x}","Sie liegen {x} vorn"],
 "port.youLose":["Pierdes {x}","You’re down {x}","Você perde {x}","Vous perdez {x}","Sie liegen {x} hinten"],
 "port.split":["Cómo está repartida","How it’s split","Como está distribuída","Répartition","Aufteilung"],
-"port.splitEmpty":["Aquí verás cómo se reparte tu plata cuando anotes compras.","You’ll see how your money is split once you log purchases.","Você verá como seu dinheiro está distribuído quando anotar compras.","Vous verrez la répartition dès que vous noterez des achats.","Sobald Sie Käufe erfassen, sehen Sie hier die Aufteilung."],
+"port.splitEmpty":["Aquí verás cómo se reparte tu dinero cuando anotes compras.","You’ll see how your money is split once you log purchases.","Você verá como seu dinheiro está distribuído quando anotar compras.","Vous verrez la répartition dès que vous noterez des achats.","Sobald Sie Käufe erfassen, sehen Sie hier die Aufteilung."],
 "port.broker":["¿Aún no tienes bróker?","No broker yet?","Ainda não tem corretora?","Pas encore de courtier ?","Noch keinen Broker?"],
 "port.brokerSub":["Compara apps para invertir desde tu país.","Compare investing apps available in your country.","Compare apps de investimento disponíveis no seu país.","Comparez les applis d’investissement disponibles dans votre pays.","Vergleichen Sie Invest-Apps in Ihrem Land."],
 "port.brokerBtn":["Ver brókers","See brokers","Ver corretoras","Voir les courtiers","Broker ansehen"],

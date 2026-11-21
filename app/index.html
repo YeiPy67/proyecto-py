@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="app.css">
 </head>
-<body>
+<body class="loading">
+<div class="skel" id="skel" aria-hidden="true"><span class="logo big">Py</span></div>
 <div class="shell">
   <aside class="side" aria-label="Menú">
     <a class="brand" href="#home"><span class="logo" aria-hidden="true">Py</span><span><b>Proyecto Py</b><small data-t="app.tag"></small></span></a>
@@ -261,7 +262,7 @@
           <div class="card pad stack"><span class="lbl" data-t="set.theme"></span><div class="seg" id="setTheme"></div></div>
           <div class="card pad stack"><label class="check"><input type="checkbox" id="setDemo"> <span data-t="set.demo"></span></label></div>
           <div class="card pad stack"><span class="lbl" data-t="set.data"></span><p class="small muted" data-t="set.dataSub"></p><div class="row"><button class="btn" id="expBtn" type="button" data-t="set.export"></button><label class="btn" for="impFile" data-t="set.import"></label><input type="file" id="impFile" accept="application/json" hidden><button class="btn danger" id="wipeBtn" type="button" data-t="set.wipe"></button></div></div>
-          <div class="card pad stack"><div class="sh"><span class="lbl" data-t="set.account"></span><span class="pill-soon" data-t="set.soon"></span></div><p class="small muted" data-t="set.accountSub"></p></div>
+          <div class="card pad stack" id="acctCard"></div>
           <div class="card pad stack"><span class="lbl" data-t="set.install"></span><p class="small muted" data-t="set.installTxt"></p><button class="btn" id="installBtn" type="button" hidden data-t="set.install"></button></div>
           <div class="card pad stack"><span class="lbl" data-t="set.src"></span><p class="small muted" data-t="set.srcTxt"></p></div>
           <div class="card pad stack wide"><span class="lbl" data-t="set.legal"></span><p class="small" data-t="set.legalTxt"></p></div>
@@ -352,9 +353,12 @@
 </div>
 <div class="toast" id="toast" hidden></div>
 
+<script src="config.js"></script>
 <script src="i18n.js"></script>
 <script src="i18n2.js"></script>
 <script src="importar.js"></script>
 <script src="app.js"></script>
+<script src="cuenta.js"></script>
+<script src="vivo.js"></script>
 </body>
 </html>
