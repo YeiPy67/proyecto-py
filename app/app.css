@@ -908,8 +908,8 @@ body{background:var(--bg)!important;background-image:none!important}
 .drop{border:1px dashed var(--faint);background:var(--sunk)}
 .mic{background:var(--fg);color:var(--bg);display:inline-flex;align-items:center;gap:8px}
 .mic.rec{background:var(--red);color:#fff}
-/* Ronda 5: Cartera en tarjetas en el celular · listas de Explorar en una fila deslizable */
-@media (max-width:640px){
+/* Ronda 5: Cartera en tarjetas en celular y tablet · listas de Explorar en una fila deslizable */
+@media (max-width:900px){
   .t-buys{min-width:0!important}
   .t-buys thead{display:none}
   .t-buys tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"a now x" "w gain x" "u loc x";column-gap:10px;row-gap:2px;padding:14px 16px;border-bottom:1px solid var(--line)}
@@ -1095,3 +1095,4 @@ details[open]>summary::after{transform:rotate(45deg)}
 .kbd{font:600 .68rem var(--mono);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--muted);margin-left:auto}
 @media (hover:none){.kbd{display:none}}
 #v-settings .card{align-self:start}
+.wel-glyph{color:#fff;display:block;margin:0 auto 6px}.wel-glyph .ico{width:44px;height:44px;stroke-width:1.3}

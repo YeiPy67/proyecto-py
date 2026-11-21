@@ -25,7 +25,7 @@ function welcome(done,startAt=0){
     if(k==="hello"){const hi=el("h1",{class:"wel-hi"},t("wel.hello"));s.append(el("span",{class:"logo xl"},"Py"),hi,el("p",{class:"wel-tap"},t("wel.tap")));
       const words=TXT["wel.hello"];let j=0;const iv=setInterval(()=>{if(!s.isConnected)return clearInterval(iv);hi.classList.add("swap");setTimeout(()=>{j=(j+1)%words.length;hi.textContent=words[j];hi.classList.remove("swap")},380)},1900);
       s.onclick=()=>{clearInterval(iv);next()};s.classList.add("tappable")}
-    if(k==="lang"){s.append(el("h2",{},"🌍"),el("p",{class:"wel-sub"},t("onb.lang")));const box=el("div",{class:"wel-list"});
+    if(k==="lang"){{const g=el("span",{class:"wel-glyph"});g.innerHTML='<svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>';s.append(g,el("p",{class:"wel-sub"},t("onb.lang")))}const box=el("div",{class:"wel-list"});
       LANGS.forEach(([c,n])=>{const b=btn(n,"wel-opt"+(c===LANG?" on":""));b.onclick=()=>{LANG=c;store.set("lang",c);applyI18n();next()};box.append(b)});s.append(box)}
     if(k==="name"){const inp=el("input",{type:"text",class:"wel-input",maxlength:"24",autocomplete:"given-name","aria-label":t("wel.name")});inp.value=prof.name||"";
       const grid=el("div",{class:"wel-syms"});SYMBOLS.forEach(sy=>{const b=btn(sy,"sym-tile"+(sy===prof.avatar?" on":""));b.onclick=()=>{prof.avatar=sy;grid.querySelectorAll(".sym-tile").forEach(x=>x.classList.toggle("on",x===b))};grid.append(b)});

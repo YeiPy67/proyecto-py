@@ -399,7 +399,7 @@ function rPortfolio(){
   if(!premium){const lk=el("div",{class:"locked"});lk.append(el("div",{class:"blur"},"NVDA 120 · ANT 80 · VOO 600 · BTC 55 000"));const ov=el("div",{class:"over"});ov.append(el("a",{class:"btn pri sm",href:"#premium"},"★ "+t("pr.see")));lk.append(ov);ab.append(lk)}
   else{const syms=[...new Set(holdings.map(b=>b.s))];if(!syms.length)ab.append(el("p",{class:"small muted"},t("port.empty")));
     syms.forEach(s=>{const r=el("div",{class:"alert-row"}),inp=el("input",{type:"number",step:"0.5",min:"0","aria-label":lab(s)});inp.value=alerts[s]??"";
-      const b=el("button",{class:"btn sm",type:"button"},"🔔");b.onclick=()=>{const v=+inp.value;if(v)alerts[s]=v;else delete alerts[s];store.set("alerts",alerts);toast(t("t.saved"))};
+      const b=el("button",{class:"btn sm",type:"button","aria-label":t("mkt.tAlert")});b.innerHTML=ICON.bell;b.onclick=()=>{const v=+inp.value;if(v)alerts[s]=v;else delete alerts[s];store.set("alerts",alerts);toast(t("t.saved"))};
       r.append(el("span",{},`${lab(s)} · ${fmtPx(s,D.precios[s].precio)} USD`),inp,b);ab.append(r)})}
 }
 $("bAdd").addEventListener("click",()=>{const s=$("bSym").value,q=+$("bQ").value,px=+$("bPx").value||null;if(!(q>0)){toast(t("port.need"));return}
