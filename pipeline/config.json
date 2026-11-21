@@ -1,0 +1,9 @@
+{
+  "_ayuda": "Elige de dónde salen los datos. Hoy todo es gratis. Para cambiar de proveedor en el futuro, agrega su función en pipeline/proveedores.py y pon aquí su nombre.",
+  "precios": "yahoo",
+  "noticias": "gdelt",
+  "gdelt_pausa_segundos": 30,
+  "noticias_api_clave_env": "NOTICIAS_API_KEY",
+  "ia_resumenes": "manual",
+  "ia_importar": "local"
+}

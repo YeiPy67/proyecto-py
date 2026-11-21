@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Proyecto Py</title>
 <meta name="description" content="Proyecto Py">
-<meta name="theme-color" content="#0b1118">
+<meta name="theme-color" content="#18143a">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -17,7 +17,9 @@
 <div class="shell">
   <aside class="side" aria-label="Menú">
     <a class="brand" href="#home"><span class="logo" aria-hidden="true">Py</span><span><b>Proyecto Py</b><small data-t="app.tag"></small></span></a>
+    <button class="add-cta" type="button" data-imp="menu">＋ <span data-t="port.addBtn"></span></button>
     <nav class="sidenav" id="sidenav"></nav>
+    <p class="side-not" data-t="app.not"></p>
     <div class="side-ad" id="sideAd"></div>
   </aside>
 
@@ -34,13 +36,12 @@
         <a class="iconbtn" href="#settings" aria-label="Ajustes" title="Ajustes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></a>
       </div>
     </header>
-    <div class="tape" aria-hidden="true"><div class="track" id="tape"></div></div>
 
     <main id="views">
       <!-- INICIO -->
       <section class="view" id="v-home">
         <div class="hello"><h1 id="hello"></h1><p class="muted" id="helloDate"></p></div>
-        <div class="kpis" id="kpis"></div>
+        <div class="card money-card" id="moneyCard"></div>
         <div class="grid-home">
           <div class="card pad stack">
             <div class="sh"><h2 data-t="home.forYou"></h2><span class="note" data-t="home.forYouSub"></span></div>
@@ -59,6 +60,8 @@
             </div>
           </div>
         </div>
+        <div class="sh"><h2 data-t="home.marketNow"></h2></div>
+        <div class="kpis" id="kpis"></div>
         <div class="ad-slot" data-ad></div>
       </section>
 
@@ -115,16 +118,37 @@
           <div class="card pad stack" id="portSummary"></div>
           <div class="card pad donutcard"><span class="lbl" data-t="port.split"></span><svg class="donut" id="donut" viewBox="0 0 220 220" role="img"></svg><div class="dlegend" id="dlegend"></div></div>
         </div>
-        <div class="card">
-          <div class="pad form-row">
-            <div class="field"><label for="bSym" data-t="port.what"></label><select id="bSym"></select></div>
-            <div class="field"><label for="bDate" data-t="port.date"></label><input type="date" id="bDate"></div>
-            <div class="field"><label for="bUsd" data-t="port.amount"></label><input type="number" id="bUsd" min="0" step="1" placeholder="40"></div>
-            <div class="field"><label for="bPx" data-t="port.px"></label><input type="number" id="bPx" min="0" step="0.01"></div>
-            <button class="btn pri tall" id="bAdd" type="button" data-t="port.add"></button>
-          </div>
-          <div class="tablebox"><table class="t-buys"><thead><tr><th data-t="port.asset"></th><th data-t="port.date"></th><th class="r" data-t="port.inv"></th><th class="r" data-t="port.units"></th><th class="r" data-t="port.now"></th><th class="r" data-t="port.gain"></th><th class="r" id="thLocal"></th><th></th></tr></thead><tbody id="buys"></tbody></table></div>
+        <div class="add-row">
+          <button class="btn pri" type="button" data-imp="photo">📸 <span data-t="imp.photo"></span></button>
+          <button class="btn" type="button" data-imp="voice">🎙️ <span data-t="imp.voice"></span></button>
+          <button class="btn" type="button" data-imp="text">⌨️ <span data-t="imp.text"></span></button>
+          <button class="btn" type="button" data-imp="connect">🔗 <span data-t="imp.connect"></span></button>
         </div>
+        <div class="card">
+          <div class="pad sh"><h3 data-t="port.invest"></h3><span class="note" id="investTot"></span></div>
+          <div class="tablebox"><table class="t-buys"><thead><tr><th data-t="port.asset"></th><th data-t="port.where"></th><th class="r" data-t="port.units"></th><th class="r" data-t="port.cost"></th><th class="r" data-t="port.now"></th><th class="r" data-t="port.gain"></th><th class="r" id="thLocal"></th><th></th></tr></thead><tbody id="buys"></tbody></table></div>
+          <details class="manual"><summary data-t="imp.manual"></summary>
+            <div class="form-row">
+              <div class="field"><label for="bSym" data-t="port.what"></label><select id="bSym"></select></div>
+              <div class="field"><label for="bQ" data-t="imp.units"></label><input type="number" id="bQ" min="0" step="any" placeholder="0.5"></div>
+              <div class="field"><label for="bPx" data-t="imp.cost"></label><input type="number" id="bPx" min="0" step="any"></div>
+              <div class="field"><label for="bAcct" data-t="imp.where"></label><input type="text" id="bAcct" list="impApps" placeholder="Hapi"></div>
+              <button class="btn pri tall" id="bAdd" type="button" data-t="st.add"></button>
+            </div>
+          </details>
+        </div>
+        <div class="card">
+          <div class="pad stack"><div class="sh"><h3 data-t="cash.title"></h3><span class="note" data-t="cash.sub"></span></div></div>
+          <div id="cashList"></div>
+          <div class="pad form-row">
+            <div class="field"><label for="cNameIn" data-t="cash.name"></label><input type="text" id="cNameIn" data-tp="cash.namePh"></div>
+            <div class="field"><label for="cAmt" id="cAmtL"></label><input type="number" id="cAmt" min="0" step="any"></div>
+            <div class="field"><label for="cRate" data-t="cash.rate"></label><input type="number" id="cRate" min="0" step="0.1" placeholder="9"></div>
+            <div class="field"><label for="cAcct" data-t="imp.where"></label><input type="text" id="cAcct" list="impApps" placeholder="Nu"></div>
+            <button class="btn tall" id="cAdd" type="button" data-t="cash.add"></button>
+          </div>
+        </div>
+        <div class="card pad stack"><div class="sh"><h3 data-t="div.title"></h3><span class="note" data-t="div.sub"></span></div><div id="divBody"></div></div>
         <div class="grid2">
           <div class="card pad stack locked-card" id="alertsCard"><div class="sh"><h3 data-t="port.alerts"></h3><span class="pill-pr">★ Premium</span></div><p class="small muted" data-t="port.alertsSub"></p><div id="alertsBody"></div></div>
           <div class="card pad stack"><h3 data-t="port.broker"></h3><p class="small muted" data-t="port.brokerSub"></p><button class="btn pri" type="button" data-ph="aff" data-t="port.brokerBtn"></button></div>
@@ -138,6 +162,12 @@
         <label class="check"><input type="checkbox" id="nLang"> <span data-t="news.lang"></span></label>
         <div class="card ai-brief" id="aiBrief" hidden><span class="lbl">✦ <span data-t="news.ai"></span></span><div id="aiBriefBody"></div></div>
         <div class="card" id="newsList"></div>
+      </section>
+
+      <!-- APRENDE -->
+      <section class="view" id="v-learn">
+        <div class="sh"><h1 data-t="nav.learn"></h1><span class="note" data-t="learn.sub"></span></div>
+        <div class="learn" id="learnList"></div>
       </section>
 
       <!-- MÁS -->
@@ -238,23 +268,78 @@
         </div>
       </section>
     </main>
-    <footer class="disc"><span data-t="disc.short"></span> · Proyecto Py</footer>
+    <footer class="disc"><span data-t="app.notShort"></span> · <span data-t="disc.short"></span></footer>
   </div>
 
   <nav class="tabs" id="tabs" aria-label="Menú"></nav>
 </div>
 
-<!-- Bienvenida -->
+<!-- Bienvenida: 2 pasos -->
 <div class="overlay" id="onb" hidden>
   <div class="onb card">
-    <div class="onb-head"><span class="logo big" aria-hidden="true">Py</span><b>Proyecto Py</b></div>
-    <div class="onb-step" data-step="1"><h2>🌍</h2><div class="langs" id="onbLangs"></div></div>
-    <div class="onb-step" data-step="2" hidden><h2 data-t="onb.cur"></h2><p class="muted" data-t="onb.curSub"></p><div class="curs" id="onbCurs"></div></div>
-    <div class="onb-step" data-step="3" hidden><h2 data-t="onb.follow"></h2><p class="muted" data-t="onb.followSub"></p><div class="chips" id="onbFollow"></div>
-      <label class="check"><input type="checkbox" id="onbDisc"> <span data-t="onb.disc"></span></label></div>
-    <div class="onb-foot"><button class="btn" id="onbBack" type="button" data-t="onb.back"></button><div class="dots" id="onbDots"></div><button class="btn pri" id="onbNext" type="button" data-t="onb.next"></button></div>
+    <div class="onb-step" data-step="1">
+      <div class="onb-head"><span class="logo big" aria-hidden="true">Py</span><div><h2 data-t="onb.hi"></h2><p class="small muted" data-t="app.tag"></p></div></div>
+      <p data-t="app.not"></p>
+      <div class="seg wrap" id="onbLangs" role="group"></div>
+      <label class="onb-cur"><span class="small muted" data-t="onb.curAuto"></span><select id="onbCur"></select></label>
+      <button class="btn pri big-btn" id="onbNext" type="button" data-t="onb.next"></button>
+      <p class="note" data-t="onb.legal"></p>
+    </div>
+    <div class="onb-step" data-step="2" hidden>
+      <h2 data-t="onb.how"></h2>
+      <div class="imp-grid">
+        <button class="imp-opt" type="button" data-onb="photo"><span class="ic">📸</span><b data-t="imp.photo"></b><small data-t="imp.photoSub"></small></button>
+        <button class="imp-opt" type="button" data-onb="voice"><span class="ic">🎙️</span><b data-t="imp.voice"></b><small data-t="imp.voiceSub"></small></button>
+        <button class="imp-opt" type="button" data-onb="text"><span class="ic">⌨️</span><b data-t="imp.text"></b><small data-t="imp.textSub"></small></button>
+        <button class="imp-opt" type="button" data-onb="connect"><span class="ic">🔗</span><b data-t="imp.connect"></b><small data-t="imp.connectSub"></small><span class="pill-soon" data-t="imp.later"></span></button>
+      </div>
+      <button class="btn big-btn" type="button" data-onb="skip" data-t="imp.skip"></button>
+    </div>
   </div>
 </div>
+
+<!-- Agregar lo que tienes -->
+<div class="overlay" id="impModal" hidden>
+  <div class="card imp">
+    <div class="imp-head"><button class="ob" id="impBack" type="button" aria-label="←">←</button><h2 data-t="imp.title"></h2><button class="ob" id="impClose" type="button" aria-label="✕">✕</button></div>
+    <div id="imp-menu" class="imp-grid">
+      <button class="imp-opt" type="button" data-imp="photo"><span class="ic">📸</span><b data-t="imp.photo"></b><small data-t="imp.photoSub"></small></button>
+      <button class="imp-opt" type="button" data-imp="voice"><span class="ic">🎙️</span><b data-t="imp.voice"></b><small data-t="imp.voiceSub"></small></button>
+      <button class="imp-opt" type="button" data-imp="text"><span class="ic">⌨️</span><b data-t="imp.text"></b><small data-t="imp.textSub"></small></button>
+      <button class="imp-opt" type="button" data-imp="connect"><span class="ic">🔗</span><b data-t="imp.connect"></b><small data-t="imp.connectSub"></small><span class="pill-soon" data-t="imp.later"></span></button>
+    </div>
+    <div id="imp-photo" class="stack" hidden>
+      <label class="field"><span class="small muted" data-t="imp.which"></span><input type="text" id="impPhotoApp" list="impApps" placeholder="Hapi"></label>
+      <label class="drop" for="impFiles"><span class="ic">📸</span><b data-t="imp.pick"></b><small data-t="imp.privacy"></small></label>
+      <input type="file" id="impFiles" accept="image/*" multiple hidden>
+      <p class="small muted" id="impPhotoStatus" hidden></p>
+    </div>
+    <div id="imp-voice" class="stack" hidden>
+      <p class="small muted" data-t="imp.voiceSub"></p>
+      <button class="mic" id="impMic" type="button"></button>
+      <p class="small dn" id="impNoVoice" data-t="imp.noVoice" hidden></p>
+      <textarea id="impVoiceTxt" rows="4"></textarea>
+      <button class="btn pri" id="impVoiceGo" type="button" data-t="imp.go"></button>
+    </div>
+    <div id="imp-text" class="stack" hidden>
+      <textarea id="impText" rows="5" data-tp="imp.ph"></textarea>
+      <button class="btn pri" id="impTextGo" type="button" data-t="imp.go"></button>
+    </div>
+    <div id="imp-connect" class="stack" hidden>
+      <div class="brokers"><span>Hapi</span><span>Trii</span><span>eToro</span><span>Interactive Brokers</span><span>Binance</span><span>GBM</span><span>XTB</span><span>Revolut</span></div>
+      <p class="small" data-t="imp.soon"></p>
+      <button class="btn pri" type="button" data-imp="photo">📸 <span data-t="imp.photo"></span></button>
+    </div>
+    <div id="imp-review" class="stack" hidden>
+      <div><h3 data-t="imp.review"></h3><p class="small muted" data-t="imp.reviewSub"></p></div>
+      <p class="small muted" id="impNone" data-t="imp.none" hidden></p>
+      <div id="impRows" class="stack"></div>
+      <div class="row"><button class="btn" id="impAddRow" type="button">＋ <span data-t="imp.addRow"></span></button><button class="btn pri" id="impSave" type="button"></button></div>
+      <details class="how"><summary data-t="imp.raw"></summary><pre id="impRaw"></pre></details>
+    </div>
+  </div>
+</div>
+<datalist id="impApps"><option value="Hapi"><option value="Trii"><option value="eToro"><option value="Interactive Brokers"><option value="Binance"><option value="GBM"><option value="XTB"><option value="Revolut"><option value="Nu"><option value="Bancolombia"><option value="Robinhood"><option value="Coinbase"></datalist>
 
 <!-- Anuncio al abrir -->
 <div class="overlay dark" id="inter" hidden>
@@ -268,6 +353,8 @@
 <div class="toast" id="toast" hidden></div>
 
 <script src="i18n.js"></script>
+<script src="i18n2.js"></script>
+<script src="importar.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
