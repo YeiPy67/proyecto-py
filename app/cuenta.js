@@ -5,7 +5,7 @@
 const PyCuenta=(()=>{
   const CFG=window.PY_CONFIG||{};const ready=!!(CFG.supabaseUrl&&CFG.supabaseKey);
   let sb=null,user=null,pushT=null,lastSync=store.get("lastSync",null),applying=false;
-  const AVATARS=["🦊","🐼","🐯","🦉","🐙","🚀","🌱","💎"];
+  const AVATARS=["∑","π","∞","√","∫","Δ","φ","λ","≈","±","∂","θ"];
   const dump=()=>{const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith("py.")&&k!=="py.lastSync")o[k]=localStorage.getItem(k)}return o};
   async function load(){if(window.supabase)return;await new Promise((ok,ko)=>{const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js";s.onload=ok;s.onerror=ko;document.head.append(s)})}
   async function init(){if(!ready)return;try{await load();sb=window.supabase.createClient(CFG.supabaseUrl,CFG.supabaseKey);
@@ -23,9 +23,9 @@ const PyCuenta=(()=>{
     const hd=el("div",{class:"sh"});hd.append(el("span",{class:"lbl"},t("set.account")));if(!ready)hd.append(el("span",{class:"pill-soon"},t("set.soon")));c.append(hd);
     c.append(el("p",{class:"small muted"},t("acc.why")));
     // Perfil (funciona con o sin cuenta)
-    const prof=store.get("profile",{name:"",avatar:"🦊"}),row=el("div",{class:"row"}),nameIn=el("input",{type:"text",placeholder:t("acc.name"),"aria-label":t("acc.name"),maxlength:"30",style:"flex:1;min-width:140px"});nameIn.value=prof.name||"";
+    const prof=store.get("profile",{name:"",avatar:"∑"}),row=el("div",{class:"row"}),nameIn=el("input",{type:"text",placeholder:t("acc.name"),"aria-label":t("acc.name"),maxlength:"30",style:"flex:1;min-width:140px"});nameIn.value=prof.name||"";
     nameIn.onchange=()=>{prof.name=nameIn.value.trim();store.set("profile",prof);changed()};
-    const av=el("div",{class:"avatars"});AVATARS.forEach(a=>{const b=el("button",{type:"button",class:"av","aria-pressed":String(a===prof.avatar)},a);b.onclick=()=>{prof.avatar=a;store.set("profile",prof);changed();draw()};av.append(b)});
+    const av=el("div",{class:"avatars"});AVATARS.forEach(a=>{const b=el("button",{type:"button",class:"sym-tile"+(a===prof.avatar?" on":""),"aria-pressed":String(a===prof.avatar)},a);b.onclick=()=>{prof.avatar=a;store.set("profile",prof);changed();draw()};av.append(b)});
     row.append(nameIn);c.append(row,av);
     if(!ready){c.append(el("p",{class:"note"},t("acc.notReady")));return}
     if(!user){const em=el("input",{type:"email",placeholder:t("acc.email"),"aria-label":t("acc.email"),autocomplete:"email"}),send=el("button",{class:"btn pri",type:"button"},t("acc.send")),msg=el("p",{class:"small muted"});
@@ -33,7 +33,7 @@ const PyCuenta=(()=>{
         msg.textContent=error?t("acc.err",{m:error.message}):t("acc.sent");send.disabled=false};
       const g=el("button",{class:"btn",type:"button"},"G  "+t("acc.google"));g.onclick=()=>sb.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});
       const f=el("div",{class:"stack"});f.append(em,send);if(CFG.googleLogin)f.append(el("div",{class:"note center"},t("acc.or")),g);f.append(msg);c.append(f);return}
-    const who=el("div",{class:"row"});who.append(el("span",{class:"big-av"},prof.avatar||"🦊"),el("span",{class:"small"},t("acc.signedAs",{e:user.email||""})));
+    const who=el("div",{class:"row"});who.append(el("span",{class:"sym-tile"},prof.avatar||"∑"),el("span",{class:"small"},t("acc.signedAs",{e:user.email||""})));
     const st=el("p",{class:"note"},lastSync?t("acc.synced",{t:new Date(lastSync).toLocaleString(loc(),{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})}):"");
     const r2=el("div",{class:"row"}),sy=el("button",{class:"btn",type:"button"},"⟳ "+t("acc.sync")),out=el("button",{class:"btn danger",type:"button"},t("acc.out"));
     sy.onclick=push;out.onclick=async()=>{await sb.auth.signOut();user=null;draw()};r2.append(sy,out);c.append(who,st,r2)}

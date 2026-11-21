@@ -157,29 +157,29 @@ function assetSheet(sym){sheet((s,close)=>{const p=D.precios[sym];const hd=el("d
   const go=el("button",{class:"btn pri big-btn",type:"button"},t("home.seeExplore"));go.onclick=()=>{close();sel=sym;store.set("sel",sym);if(!psyms().includes(sym)){profId=PRESETS.find(x=>x.syms().includes(sym))?.id||"mine";store.set("prof",profId)}location.hash="#market"};s.append(go)})}
 
 /* ---------- Navegación ---------- */
-const NAV=[["home","⌂","nav.home"],["portfolio","◔","nav.portfolio"],["market","✧","nav.market"],["news","☰","nav.news"],["more","⋯","nav.more"]];
+const NAVS={new:[["home","⌂","nav.home"],["learn","❖","nav.learn"],["portfolio","◔","nav.portfolio"],["market","✧","nav.market"],["more","⋯","nav.more"]],def:[["home","⌂","nav.home"],["portfolio","◔","nav.portfolio"],["market","✧","nav.market"],["news","☰","nav.news"],["more","⋯","nav.more"]]};
+const navItems=()=>store.get("nivel","mid")==="new"?NAVS.new:NAVS.def;
 const SIDE_EXTRA=[["sim","∿","nav.sim"],["analysis","✦","nav.analysis"],["learn","❖","nav.learn"],["dates","▦","nav.dates"],["steps","✓","nav.steps"],["premium","★","nav.premium"],["settings","⚙","nav.settings"]];
-const MORE_OF=new Set(["sim","analysis","learn","dates","steps","premium","settings","more"]);
+const MORE_OF=new Set(["sim","analysis","learn","dates","steps","premium","settings","more","news"]);
 function buildNav(){
   const side=$("sidenav");side.innerHTML="";
   const add=(box,[id,ic,k])=>{const a=el("a",{href:"#"+id,"data-v":id});a.append(el("span",{class:"ic","aria-hidden":"true"},ic),el("span",{},t(k)));box.append(a)};
-  NAV.filter(n=>n[0]!=="more").forEach(n=>add(side,n));side.append(el("hr"));SIDE_EXTRA.forEach(n=>add(side,n));
-  const tabs=$("tabs");tabs.innerHTML="";tabs.append(el("span",{class:"ind","aria-hidden":"true"}));NAV.forEach(n=>add(tabs,n));
-  const mg=$("moreGrid");mg.innerHTML="";SIDE_EXTRA.forEach(([id,ic,k])=>{const a=el("a",{class:"card mg",href:"#"+id});a.append(el("span",{class:"ic"},ic),el("b",{},t(k)));mg.append(a)});
+  const main=navItems().filter(n=>n[0]!=="more");main.forEach(n=>add(side,n));side.append(el("hr"));[...SIDE_EXTRA,["news","☰","nav.news"]].filter(n=>!main.some(m=>m[0]===n[0])).forEach(n=>add(side,n));
+  const tabs=$("tabs");tabs.innerHTML="";tabs.append(el("span",{class:"ind","aria-hidden":"true"}));navItems().forEach(n=>add(tabs,n));
+  const mg=$("moreGrid");mg.innerHTML="";[...SIDE_EXTRA,["news","☰","nav.news"]].filter(n=>!navItems().some(m=>m[0]===n[0])).forEach(([id,ic,k])=>{const a=el("a",{class:"card mg",href:"#"+id});a.append(el("span",{class:"ic"},ic),el("b",{},t(k)));mg.append(a)});
 }
 let VIEW="home";
 function route(){VIEW=(location.hash||"#home").slice(1).split("?")[0];if(!$("v-"+VIEW))VIEW="home";
   document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!=="v-"+VIEW);
   document.querySelectorAll("#sidenav a").forEach(a=>a.classList.toggle("on",a.dataset.v===VIEW));
-  document.querySelectorAll("#tabs a").forEach(a=>a.classList.toggle("on",a.dataset.v===VIEW||(a.dataset.v==="more"&&MORE_OF.has(VIEW))));
+  const inTabs=navItems().some(n=>n[0]===VIEW);document.querySelectorAll("#tabs a").forEach(a=>a.classList.toggle("on",a.dataset.v===VIEW||(a.dataset.v==="more"&&!inTabs&&MORE_OF.has(VIEW))));
   render();window.scrollTo(0,0);
   const v=$("v-"+VIEW);[...v.children].forEach((c,i)=>c.style.setProperty("--i",Math.min(i,8)));v.classList.remove("enter");void v.offsetWidth;v.classList.add("enter");moveInd()}
 function moveInd(){const tb=$("tabs"),a=tb.querySelector("a.on"),ind=tb.querySelector(".ind");if(!a||!ind)return;ind.style.width=(a.offsetWidth-12)+"px";ind.style.transform=`translateX(${a.offsetLeft+6}px)`}
 addEventListener("resize",()=>moveInd());
 addEventListener("hashchange",route);
 function render(){({home:rHome,market:rMarket,portfolio:rPortfolio,news:rNews,sim:rSim,analysis:rAnalysis,learn:rLearn,dates:rDates,steps:rSteps,premium:rPremium,settings:rSettings,more:()=>{}})[VIEW]?.();fillAds()}
-function rLearn(){const box=$("learnList");box.innerHTML="";const i=LCODES.indexOf(LANG);
-  LEARN.forEach(x=>{const d=el("details",{class:"card learn-i"}),s=el("summary");s.append(el("b",{},x.t[i]));d.append(s,el("p",{},x.d[i]));box.append(d)})}
+
 
 /* ---------- Encabezado ---------- */
 function header(){
@@ -203,48 +203,44 @@ function interstitial(){if(premium)return;const o=$("inter"),b=$("interClose");o
   const iv=setInterval(()=>{n--;if(n>0)b.textContent=t("ad.closeIn",{n});else{clearInterval(iv);b.disabled=false;b.textContent=t("ad.close")}},1000)}
 $("interClose").addEventListener("click",()=>$("inter").hidden=true);
 
-/* ---------- Inicio ---------- */
-function rHome(){
-  const h=new Date().getHours(),pf=store.get("profile",{});$("hello").textContent=t(h<12?"home.morning":h<19?"home.afternoon":"home.evening")+(pf.name?", "+pf.name:"")+(pf.avatar&&pf.name?" "+pf.avatar:"");
+/* ---------- Inicio (según el nivel: new / mid / pro) ---------- */
+function rHome(){const lv=level(),P=D.precios,tt=totals();
+  const h=new Date().getHours(),pf=store.get("profile",{});const hl=$("hello");hl.innerHTML="";
+  if(pf.avatar)hl.append(el("span",{class:"sym-tile hello-sym"},pf.avatar));hl.append(document.createTextNode(t(h<12?"home.morning":h<19?"home.afternoon":"home.evening")+(pf.name?", "+pf.name:"")));
   $("helloDate").textContent=new Date().toLocaleDateString(loc(),{weekday:"long",day:"numeric",month:"long"});
-  // Tu dinero hoy
-  const mc=$("moneyCard");mc.innerHTML="";const tt=totals();
-  if(!hasAny()){mc.append(el("span",{class:"lbl"},t("home.money")),el("p",{class:"muted"},t("home.moneyEmpty")));const r=el("div",{class:"row"});
-    [["photo","📸","imp.photo"],["voice","🎙️","imp.voice"],["text","⌨️","imp.text"]].forEach(([k,ic,l],i)=>{const b=el("button",{class:"btn"+(i?"":" pri"),type:"button"},ic+" "+t(l));b.onclick=()=>PyImport.open(k);r.append(b)});mc.append(r)}
-  else{const left=el("div",{class:"stack0"});const bn=el("div",{class:"big-n"});left.append(el("span",{class:"lbl"},t("home.money")),bn);countUp(bn,tt.totalUSD*fxNow(),v=>money(v),"home");
-    const sub=el("div",{class:"small"});const dc=tt.dayUSD;sub.append(el("span",{class:dc>=0?"up":"dn"},t("home.todayMove",{x:(dc>=0?"+":"−")+money(Math.abs(dc)*fxNow())+" ("+pctf(tt.investUSD?dc/(tt.investUSD-dc)*100:0)+")"})),document.createTextNode(" · "+t("home.in",{n:tt.places})));left.append(sub);
-    const chips=el("div",{class:"acct-chips"});Object.entries(tt.byAcct).sort((a,b)=>b[1]-a[1]).forEach(([a,v])=>{const c=el("span",{class:"acct"});c.append(el("b",{},a),document.createTextNode(" "+money(v*fxNow())));chips.append(c)});
-    const add=el("button",{class:"btn sm",type:"button"},"＋ "+t("port.addBtn"));add.onclick=()=>PyImport.open("menu");
-    mc.append(left,chips,add)}
-  const k=$("kpis");k.innerHTML="";const P=D.precios;
-  const card=(l,v,s,cls)=>{const c=el("div",{class:"card kpi"});c.append(el("span",{class:"lbl"},l),el("span",{class:"v"+(cls?" "+cls:"")},v),el("span",{class:"s"},s));k.append(c)};
-  card(t("home.market"),pctf(P.VOO.cambio),"VOO · "+usd(P.VOO.precio),P.VOO.cambio>=0?"up":"dn");
-  if(P["^VIX"]){const v=P["^VIX"].precio;card(t("home.fear"),fix(v,1),t(v>=30?"home.panic":v>=20?"home.nerves":"home.calm"),v>=30?"dn":v>=20?"":"up")}
-  const mine=mySyms().filter(s=>s!=="^VIX").map(s=>[s,P[s].cambio]);
-  if(mine.length){const best=mine.reduce((a,b)=>b[1]>a[1]?b:a),worst=mine.reduce((a,b)=>b[1]<a[1]?b:a);
-    card(t("home.best"),lab(best[0])+" "+pctf(best[1]),nm(best[0]),best[1]>=0?"up":"dn");card(t("home.worst"),lab(worst[0])+" "+pctf(worst[1]),nm(worst[0]),worst[1]>=0?"up":"dn")}
-  if(CUR!=="USD"&&D.fx[CUR])card(t("home.fx",{c:CUR}),money(D.fx[CUR].precio),pctf(D.fx[CUR].cambio));
-  else card("Bitcoin",usd(P["BTC-USD"].precio),pctf(P["BTC-USD"].cambio),P["BTC-USD"].cambio>=0?"up":"dn");
-  // Para ti
-  const fy=$("forYou");fy.innerHTML="";const syms=mySyms().filter(s=>BR.activos[s]||NEWS.temas[s]?.length);
-  syms.sort((a,b)=>(!!BR.activos[b])-(!!BR.activos[a])||Math.abs(P[b].cambio)-Math.abs(P[a].cambio));
-  if(!syms.length)fy.append(el("p",{class:"muted small"},t("home.empty")));
-  syms.slice(0,6).forEach(s=>{const a=el("button",{class:"fy",type:"button"});a.onclick=()=>assetSheet(s);
-    const sb=el("div",{class:"sym"});sb.append(el("b",{},lab(s)),chg(P[s].cambio));const tx=el("div");
-    const br=BR.activos[s]?.[LANG];if(br){tx.append(el("p",{},br),el("div",{class:"meta"},"✦ "+t("news.ai")))}
-    else{const n=NEWS.temas[s].find(x=>x.l===GDELT_LANG[LANG]||x.l==="English")||NEWS.temas[s][0];tx.append(el("p",{},n.t),el("div",{class:"meta"},n.f))}
-    a.append(sb,tx,el("span",{class:"chev muted"},"›"));fy.append(a)});
-  // Análisis
-  $("tzDate").textContent=fD(AN.fecha_iso,{day:"numeric",month:"long"});$("tzTit").textContent=AN.titular[LANG];$("tzSub").textContent=AN.bajada[LANG];
-  // Para tu cartera (Premium)
-  const pb=$("personalBody");pb.innerHTML="";
-  if(premium){pb.append(el("p",{class:"small"},personalText()))}
-  else{const lk=el("div",{class:"locked"});lk.append(el("div",{class:"blur"},AN.secciones.at(-1).puntos[LANG].join(" ")));const ov=el("div",{class:"over"});const b=el("a",{class:"btn pri sm",href:"#premium"},"★ "+t("pr.see"));ov.append(b);lk.append(ov);pb.append(lk)}
-  // Próximas fechas
-  const he=$("homeEvents");he.innerHTML="";const today=new Date(new Date().toDateString());
-  EV.filter(e=>new Date(e.f+"T12:00")>=today).slice(0,3).forEach(e=>{const r=el("div",{class:"me"}),n=Math.floor((new Date(e.f+"T12:00")-today)/864e5);
-    r.append(el("span",{class:"d"},fD(e.f)),el("span",{},e.t[LANG]),el("span",{class:"cd"},t("dt.d",{n})));he.append(r)});
-}
+  const body=$("homeBody");body.innerHTML="";const add=c=>{if(c)body.append(c)};
+  const money0=()=>{const c=homeCard("money-card");
+    if(!hasAny()){c.append(el("span",{class:"lbl"},t("home.money")),el("p",{class:"muted"},lv==="new"?t("home.firstInv"):t("home.moneyEmpty")));const r=el("div",{class:"row"});
+      (lv==="new"?[["text","＋","port.addBtn"]]:[["photo","📸","imp.photo"],["voice","🎙️","imp.voice"],["text","⌨️","imp.text"]]).forEach(([k,ic,l],i)=>{const b=el("button",{class:"btn"+(i?"":" pri"),type:"button"},ic+" "+t(l));b.onclick=()=>PyImport.open(k);r.append(b)});c.append(r);return c}
+    const left=el("div",{class:"stack0"}),bn=el("div",{class:"big-n"});left.append(el("span",{class:"lbl"},t("home.money")),bn);countUp(bn,tt.totalUSD*fxNow(),v=>money(v),"home");
+    const dc=tt.dayUSD,sub=el("div",{class:"small"});sub.append(el("span",{class:dc>=0?"up":"dn"},t("home.todayMove",{x:(dc>=0?"+":"−")+money(Math.abs(dc)*fxNow())+(lv==="new"?"":" ("+pctf(tt.investUSD?dc/(tt.investUSD-dc)*100:0)+")")})));
+    if(lv!=="new")sub.append(document.createTextNode(" · "+t("home.in",{n:tt.places})));left.append(sub);c.append(left);
+    if(lv==="pro"){const chips=el("div",{class:"acct-chips"});Object.entries(tt.byAcct).sort((x,y)=>y[1]-x[1]).forEach(([k2,v])=>{const ch=el("span",{class:"acct"});ch.append(el("b",{},k2),document.createTextNode(" "+money(v*fxNow())));chips.append(ch)});c.append(chips)}
+    const ad=el("button",{class:"btn sm",type:"button"},"＋ "+t("port.addBtn"));ad.onclick=()=>PyImport.open("menu");c.append(ad);return c};
+  const marketSimple=()=>{const c=homeCard("mk-card",t("home.mkSimple"));const v=P.VOO.cambio;c.append(el("p",{class:"mk-sent "+(v>1?"up":v<-1?"dn":"")},marketSentence()));
+    const a=el("a",{class:"link",href:"#analysis"},t("home.weekEasy")+" →");c.append(a);return c};
+  const forYou=n=>{const syms=mySyms().filter(x=>BR.activos[x]||NEWS.temas[x]?.length).sort((x,y)=>(!!BR.activos[y])-(!!BR.activos[x])||Math.abs(P[y].cambio)-Math.abs(P[x].cambio));
+    if(!syms.length)return null;const c=homeCard("fy-card",t("home.forYou"),el("span",{class:"note"},t("home.forYouSub")));const box=el("div",{class:"foryou"});
+    syms.slice(0,n).forEach(x=>{const a2=el("button",{class:"fy",type:"button"});a2.onclick=()=>assetSheet(x);const sb=el("div",{class:"sym"});sb.append(el("b",{},lab(x)),chg(P[x].cambio));
+      const tx=el("div"),br=BR.activos[x]?.[LANG];if(br)tx.append(el("p",{},br));else{const nn=NEWS.temas[x].find(q=>q.l===GDELT_LANG[LANG]||q.l==="English")||NEWS.temas[x][0];tx.append(el("p",{},nn.t))}
+      a2.append(sb,tx,el("span",{class:"chev muted"},"›"));box.append(a2)});c.append(box);return c};
+  const events=n=>{const today=new Date(new Date().toDateString()),list=EV.filter(e=>new Date(e.f+"T12:00")>=today).slice(0,n);if(!list.length)return null;
+    const c=homeCard("ev-card",t("home.next"),el("a",{class:"small",href:"#dates"},t("home.seeAll")));const box=el("div",{class:"mini-events"});
+    list.forEach(e=>{const d=Math.floor((new Date(e.f+"T12:00")-today)/864e5),r=el("button",{class:"me",type:"button"});r.append(el("span",{class:"d"},fD(e.f)),el("span",{},e.t[LANG]),el("span",{class:"cd"},t("dt.d",{n:d})));r.onclick=()=>eventSheet(e,d);box.append(r)});c.append(box);return c};
+  const kpis=full=>{const c=homeCard("kpi-card",t("home.marketNow"));const k=el("div",{class:"kpis"});
+    const card=(l,v,s2,cls)=>{const q=el("div",{class:"kpi"});q.append(el("span",{class:"lbl"},l),el("span",{class:"v"+(cls?" "+cls:"")},v),el("span",{class:"s"},s2));k.append(q)};
+    card(t("home.market"),pctf(P.VOO.cambio),"VOO · "+usd(P.VOO.precio),P.VOO.cambio>=0?"up":"dn");
+    if(P["^VIX"]){const v=P["^VIX"].precio;card(t("home.fear"),fix(v,1),t(v>=30?"home.panic":v>=20?"home.nerves":"home.calm"),v>=30?"dn":v>=20?"":"up")}
+    if(full){const own=[...new Set(holdings.map(q=>q.s))],mine=(own.length?own:mySyms()).filter(x=>!/[=^]/.test(x)).map(x=>[x,P[x].cambio]);if(mine.length){const best=mine.reduce((x,y)=>y[1]>x[1]?y:x),worst=mine.reduce((x,y)=>y[1]<x[1]?y:x);
+      card(t("home.best"),lab(best[0])+" "+pctf(best[1]),nm(best[0]),best[1]>=0?"up":"dn");card(t("home.worst"),lab(worst[0])+" "+pctf(worst[1]),nm(worst[0]),worst[1]>=0?"up":"dn")}}
+    if(CUR!=="USD"&&D.fx[CUR])card(t("home.fx",{c:CUR}),money(D.fx[CUR].precio),pctf(D.fx[CUR].cambio));c.append(k);return c};
+  const analysis=()=>{const a2=el("a",{class:"card hc teaser",href:"#analysis"});a2.append(el("span",{class:"lbl"},fD(AN.fecha_iso,{day:"numeric",month:"long"})),el("h3",{},AN.titular[LANG]),el("span",{class:"link"},t("home.readAn")+" →"));return a2};
+  const personal=()=>{const c=homeCard("personal",t("home.personal"),el("span",{class:"pill-pr"},"★ Premium"));
+    if(premium)c.append(el("p",{class:"small"},personalText()));else{c.append(el("p",{class:"small muted"},t("home.personalTxt")));c.append(el("a",{class:"btn pri sm",href:"#premium"},"★ "+t("pr.see")))}return c};
+  if(lv==="new"){add(pathCard());add(marketSimple());add(money0());add(factCard());add(tipCard())}
+  else if(lv==="mid"){add(money0());add(forYou(3));add(marketSimple());add(pathCard(true));add(events(2));add(tipCard())}
+  else{add(money0());const g=el("div",{class:"grid-home"}),l=el("div",{class:"stack"}),r=el("div",{class:"stack"});const fy=forYou(6);if(fy)l.append(fy);[analysis(),personal(),events(3)].forEach(x=>x&&r.append(x));g.append(l,r);add(g);add(kpis(true))}
+  [...body.children].forEach((c,i)=>c.style.setProperty("--i",i+1))}
 /* Totales en USD: inversiones, movimiento del día, ahorro y por dónde lo tienes */
 const fxOf=c=>c==="USD"?1:(D.fx[c]?.precio||1);
 const cashUSD=c=>c.amt/fxOf(c.cur||CUR);
@@ -504,9 +500,11 @@ function rSettings(){
   const sl=$("setLang");sl.innerHTML="";LANGS.forEach(([c,n])=>{const b=el("button",{type:"button","aria-pressed":String(c===LANG)},n);b.addEventListener("click",()=>setLang(c));sl.append(b)});
   const sc=$("setCur");sc.innerHTML="";CURS.forEach(([c,s])=>sc.append(el("option",{value:c},`${c} · ${s}`)));sc.value=CUR;
   const st=$("setTheme");st.innerHTML="";[["system","set.system"],["light","set.light"],["dark","set.dark"]].forEach(([k,l])=>{const b=el("button",{type:"button","aria-pressed":String(store.get("theme","system")===k)},t(l));b.addEventListener("click",()=>{store.set("theme",k);applyTheme();rSettings()});st.append(b)});
-  $("setDemo").checked=premium;PyCuenta.draw()}
+  $("setDemo").checked=premium;PyCuenta.draw();
+  const lc=$("setLevel");lc.innerHTML="";LEVELS.forEach(([id,ic,k])=>{const b=el("button",{type:"button","aria-pressed":String(level()===id)},ic+" "+t(k));b.onclick=()=>{store.set("nivel",id);buildNav();rSettings();moveInd();toast(t("t.saved"))};lc.append(b)})}
 function setLang(c){LANG=c;store.set("lang",c);applyI18n();buildNav();header();route()}
 $("setCur").addEventListener("change",e=>{CUR=e.target.value;store.set("cur",CUR);rSim.init=false;store.del("sim");header();toast(t("t.saved"))});
+$("setWelcome").addEventListener("click",()=>welcome(a=>{applyI18n();buildNav();header();route()}));
 $("setDemo").addEventListener("change",e=>{premium=e.target.checked;store.set("premium",premium);header();fillAds();toast(premium?"★ "+t("pr.active"):t("t.saved"))});
 $("expBtn").addEventListener("click",()=>{const dump={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith("py."))dump[k]=localStorage.getItem(k)}
   const u=URL.createObjectURL(new Blob([JSON.stringify(dump,null,1)],{type:"application/json"})),a=el("a",{href:u,download:"proyecto-py.json"});document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)});
@@ -538,14 +536,14 @@ async function boot(){
   CURS.splice(0,CURS.length,...[["USD","US$"],["EUR","€"],["GBP","£"],["MXN","MX$"],["BRL","R$"],["COP","COL$"],["ARS","AR$"],["CLP","CL$"],["PEN","S/"],["CAD","CA$"],["JPY","¥"]].filter(c=>c[0]==="USD"||D.fx[c[0]]));
   // Vista previa para capturas: ?shot=1 salta la bienvenida y el anuncio y usa compras de ejemplo (no guarda nada).
   const Q=new URLSearchParams(location.search),SHOT=Q.has("shot");
-  if(SHOT){if(Q.get("lang"))LANG=Q.get("lang");if(Q.get("cur"))CUR=Q.get("cur");premium=Q.has("premium");applyI18n();buildNav();
+  if(SHOT){if(Q.get("nivel"))store.set("nivel",Q.get("nivel"));if(Q.get("lang"))LANG=Q.get("lang");if(Q.get("cur"))CUR=Q.get("cur");premium=Q.has("premium");applyI18n();buildNav();
     if(!Q.has("empty")&&!holdings.length){holdings=[{id:"a",s:"VOO",q:.0944,px:635.54,d:"2026-11-20",acct:"Hapi",fx:fxAt("2026-11-20")},{id:"b",s:"ANT",q:.39,px:88.91,d:"2026-11-20",acct:"Hapi",fx:fxAt("2026-11-20")},{id:"c",s:"NVDA",q:.5,px:null,d:"2026-11-20",acct:"Hapi",fx:fxAt("2026-11-20")},{id:"d",s:"GOOGL",q:.13,px:190,d:"2025-11-20",acct:"eToro",fx:fxAt("2025-11-20")},{id:"e",s:"BTC-USD",q:.001,px:61000,d:"2026-10-01",acct:"Binance",fx:fxAt("2026-10-01")}];cash=[{id:"f",name:"CDT",amt:240000,cur:"COP",rate:13,acct:"Lulo"}]}}
   header();
   PyImport.init();PyCuenta.init();PyVivo.init();route();
-  const start=(ad)=>{applyI18n();buildNav();header();route();if(ad&&(!SHOT||Q.has("ad")))interstitial()};
-  if((SHOT&&Q.has("onb"))||(!SHOT&&!store.get("onboarded")))onboarding(start);else if(!SHOT||Q.has("ad"))interstitial();
+  const start=(action)=>{applyI18n();buildNav();header();if(action==="learn"){location.hash="#learn";route();setTimeout(()=>openLesson(LECCIONES[0].id),500)}else{route();if(action&&action.startsWith("imp:"))setTimeout(()=>PyImport.open(action.slice(4)),400)}};
+  if((SHOT&&Q.has("onb"))||(!SHOT&&!store.get("onboarded")))welcome(start,+(Q.get("welstep")||0));else if(!SHOT||Q.has("ad"))interstitial();
   if(SHOT){document.documentElement.classList.add("noanim");const sh=Q.get("sheet");
-    if(sh==="asset")assetSheet(Q.get("s")||"NVDA");if(sh==="news")newsSheet({...NEWS.temas.NVDA[0],k:"NVDA"});if(sh==="event")eventSheet(EV[2],19)}
+    if(sh==="asset")assetSheet(Q.get("s")||"NVDA");if(sh==="news")newsSheet({...NEWS.temas.NVDA[0],k:"NVDA"});if(sh==="event")eventSheet(EV[2],19);if(Q.get("les"))openLesson(Q.get("les"),+(Q.get("lesk")||0))}
   if(SHOT&&Q.get("imp")){PyImport.open(Q.get("imp"));if(Q.get("impq"))PyImport.review(Q.get("impq"),Q.get("imp"),"")}
   let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(render,150)});
   if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});

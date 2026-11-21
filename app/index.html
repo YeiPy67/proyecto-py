@@ -42,27 +42,7 @@
       <!-- INICIO -->
       <section class="view" id="v-home">
         <div class="hello"><h1 id="hello"></h1><p class="muted" id="helloDate"></p></div>
-        <div class="card money-card" id="moneyCard"></div>
-        <div class="grid-home">
-          <div class="card pad stack">
-            <div class="sh"><h2 data-t="home.forYou"></h2><span class="note" data-t="home.forYouSub"></span></div>
-            <div id="forYou" class="foryou"></div>
-          </div>
-          <div class="stack">
-            <a class="card teaser" href="#analysis"><span class="lbl" id="tzDate"></span><h3 id="tzTit"></h3><p class="muted small" id="tzSub"></p><span class="link" data-t="home.readAn"></span></a>
-            <div class="card pad stack locked-card" id="personal">
-              <div class="sh"><h3 data-t="home.personal"></h3><span class="pill-pr">★ Premium</span></div>
-              <p class="small muted" data-t="home.personalTxt"></p>
-              <div id="personalBody"></div>
-            </div>
-            <div class="card pad stack">
-              <div class="sh"><h3 data-t="home.next"></h3><a class="small" href="#dates" data-t="home.seeAll"></a></div>
-              <div id="homeEvents" class="mini-events"></div>
-            </div>
-          </div>
-        </div>
-        <div class="sh"><h2 data-t="home.marketNow"></h2></div>
-        <div class="kpis" id="kpis"></div>
+        <div class="home-body" id="homeBody"></div>
         <div class="ad-slot" data-ad></div>
       </section>
 
@@ -260,6 +240,7 @@
           <div class="card pad stack"><span class="lbl" data-t="set.lang"></span><div class="seg wrap" id="setLang"></div></div>
           <div class="card pad stack"><label class="lbl" for="setCur" data-t="set.cur"></label><select id="setCur"></select></div>
           <div class="card pad stack"><span class="lbl" data-t="set.theme"></span><div class="seg" id="setTheme"></div></div>
+          <div class="card pad stack"><span class="lbl" data-t="set.level"></span><div class="seg wrap" id="setLevel"></div><button class="btn sm" id="setWelcome" type="button" data-t="set.welcome" style="justify-self:start"></button></div>
           <div class="card pad stack"><label class="check"><input type="checkbox" id="setDemo"> <span data-t="set.demo"></span></label></div>
           <div class="card pad stack"><span class="lbl" data-t="set.data"></span><p class="small muted" data-t="set.dataSub"></p><div class="row"><button class="btn" id="expBtn" type="button" data-t="set.export"></button><label class="btn" for="impFile" data-t="set.import"></label><input type="file" id="impFile" accept="application/json" hidden><button class="btn danger" id="wipeBtn" type="button" data-t="set.wipe"></button></div></div>
           <div class="card pad stack" id="acctCard"></div>
@@ -356,8 +337,10 @@
 <script src="config.js"></script>
 <script src="i18n.js"></script>
 <script src="i18n2.js"></script>
+<script src="lecciones.js"></script>
 <script src="importar.js"></script>
 <script src="app.js"></script>
+<script src="bienvenida.js"></script>
 <script src="cuenta.js"></script>
 <script src="vivo.js"></script>
 </body>
