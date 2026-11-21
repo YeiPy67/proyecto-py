@@ -673,3 +673,11 @@ body{background-color:var(--bg);background-image:var(--pattern);background-size:
 .card.money-card{background:linear-gradient(135deg,var(--surface) 0%,var(--accent-soft) 160%)}
 .plan-c.hi{border:2px solid var(--gold);box-shadow:0 10px 30px rgba(201,138,18,.18)}
 .price{font-family:var(--display)}
+
+.cash-row{grid-template-columns:minmax(0,1fr) auto auto}
+html.noanim .wel-check .ck,html.noanim .ck{stroke-dashoffset:0!important}
+@media (prefers-reduced-motion:reduce){.wel-check .ck{stroke-dashoffset:0;animation:none}}
+.mg .ic.sym-tile{width:48px;height:48px;font-size:1.5rem}
+.mg .ic:not(.sym-tile){font-family:var(--math);font-style:italic}
+.sidenav a .ic{font-family:var(--math);font-style:italic;font-size:1.05rem}
+.ni .tg{color:var(--surface)!important;font-weight:700}

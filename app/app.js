@@ -159,15 +159,15 @@ function assetSheet(sym){sheet((s,close)=>{const p=D.precios[sym];const hd=el("d
 /* ---------- Navegación ---------- */
 const NAVS={new:[["home","⌂","nav.home"],["learn","❖","nav.learn"],["portfolio","◔","nav.portfolio"],["market","✧","nav.market"],["more","⋯","nav.more"]],def:[["home","⌂","nav.home"],["portfolio","◔","nav.portfolio"],["market","✧","nav.market"],["news","☰","nav.news"],["more","⋯","nav.more"]]};
 const navItems=()=>store.get("nivel","mid")==="new"?NAVS.new:NAVS.def;
-const SIDE_EXTRA=[["sim","∿","nav.sim"],["analysis","✦","nav.analysis"],["learn","❖","nav.learn"],["dates","▦","nav.dates"],["steps","✓","nav.steps"],["premium","★","nav.premium"],["settings","⚙","nav.settings"]];
+const SIDE_EXTRA=[["sim","∫","nav.sim"],["analysis","∂","nav.analysis"],["learn","√","nav.learn"],["dates","Δt","nav.dates"],["steps","∑","nav.steps"],["premium","φ","nav.premium"],["settings","θ","nav.settings"]];
 const MORE_OF=new Set(["sim","analysis","learn","dates","steps","premium","settings","more","news"]);
 function buildNav(){
   const side=$("sidenav");side.innerHTML="";
   const add=(box,[id,ic,k])=>{const a=el("a",{href:"#"+id,"data-v":id});a.append(el("span",{class:"ic","aria-hidden":"true"},ic),el("span",{},t(k)));box.append(a)};
-  const main=navItems().filter(n=>n[0]!=="more");main.forEach(n=>add(side,n));side.append(el("hr"));[...SIDE_EXTRA,["news","☰","nav.news"]].filter(n=>!main.some(m=>m[0]===n[0])).forEach(n=>add(side,n));
+  const main=navItems().filter(n=>n[0]!=="more");main.forEach(n=>add(side,n));side.append(el("hr"));[...SIDE_EXTRA,["news","Σ","nav.news"]].filter(n=>!main.some(m=>m[0]===n[0])).forEach(n=>add(side,n));
   const tabs=$("tabs");tabs.innerHTML="";tabs.append(el("span",{class:"ind","aria-hidden":"true"}));navItems().forEach(n=>add(tabs,n));
-  const mg=$("moreGrid");mg.innerHTML="";[...SIDE_EXTRA,["news","☰","nav.news"]].filter(n=>!navItems().some(m=>m[0]===n[0])).forEach(([id,ic,k])=>{const a=el("a",{class:"card mg",href:"#"+id});a.append(el("span",{class:"ic"},ic),el("b",{},t(k)));mg.append(a)});
-}
+  const mg=$("moreGrid");mg.innerHTML="";[...SIDE_EXTRA,["news","Σ","nav.news"]].filter(n=>!navItems().some(m=>m[0]===n[0])).forEach(([id,ic,k])=>{const a=el("a",{class:"card mg",href:"#"+id});a.append(el("span",{class:"ic"},ic),el("b",{},t(k)));mg.append(a)});
+  mg.querySelectorAll(".ic").forEach(i=>i.classList.add("sym-tile"))}
 let VIEW="home";
 function route(){VIEW=(location.hash||"#home").slice(1).split("?")[0];if(!$("v-"+VIEW))VIEW="home";
   document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!=="v-"+VIEW);
@@ -359,7 +359,7 @@ function rPortfolio(){
   // Ahorro
   const cl=$("cashList");cl.innerHTML="";cash.forEach(c=>{const r=el("div",{class:"cash-row"}),x=el("button",{class:"ob",type:"button","aria-label":t("mkt.del")},"✕");x.onclick=()=>{cash=cash.filter(o=>o.id!==c.id);saveHoldings();rPortfolio()};
     const year=c.rate?" · "+t("div.year",{x:money(cashUSD(c)*fxNow()*c.rate/100)}):"";
-    const nmEl=el("span");nmEl.append(el("b",{},c.name));r.append(nmEl,el("span",{class:"note"},(c.acct||"")+(c.rate?" · "+fix(c.rate,1)+" %":"")+year),el("b",{class:"num"},money(cashUSD(c)*fxNow())),x);cl.append(r)});
+    const nmEl=el("span",{class:"stack0"});nmEl.append(el("b",{},c.name),el("span",{class:"note"},(c.acct||"")+(c.rate?" · "+fix(c.rate,1)+" %":"")+year));r.append(nmEl,el("b",{class:"num"},money(cashUSD(c)*fxNow())),x);cl.append(r)});
   // Dividendos
   const db=$("divBody");db.innerHTML="";let dsum=0;const rowsD=[];
   Object.keys(by).filter(s=>s!=="__cash").forEach(s=>{const per=P[s].div12||0;if(!per)return;const q=holdings.filter(h=>h.s===s).reduce((a,h)=>a+h.q,0),v=q*per;dsum+=v;rowsD.push([s,v,per/P[s].precio*100])});
