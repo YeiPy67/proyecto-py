@@ -1,0 +1,39 @@
+name: Noticias
+
+on:
+  schedule:
+    - cron: "15 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: noticias
+  cancel-in-progress: false
+
+jobs:
+  noticias:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Noticias (con tope de 15 minutos)
+        run: python3 pipeline/datos.py --solo-noticias
+      - name: Contenido y calendarios
+        run: python3 pipeline/armar.py
+      - name: Guardar datos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/data
+          git diff --cached --quiet && exit 0
+          git commit -m "Noticias actualizadas"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && break; sleep 5; done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app
+      - uses: actions/deploy-pages@v4
